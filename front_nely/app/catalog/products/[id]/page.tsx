@@ -86,7 +86,7 @@ async function getRelatedProducts(id: string) {
 
     return products.slice(0, 4).map((p: any) => ({
       id: p.id,
-      href: `/catalog/products/${p.id}`,
+      href: `/catalog/products/${p.slug || p.id}`,
       imageSrc: p.images?.[0]?.url || '/placeholder.jpg',
       imageAlt: p.name,
       title: p.name,

@@ -62,7 +62,7 @@ export async function GET(
         const relatedData = await relatedResponse.json();
         relatedProducts = (relatedData.data || relatedData.results || []).map((p: any) => ({
           id: p.id,
-          href: `/catalog/products/${p.id}`,
+          href: `/catalog/products/${p.slug || p.id}`,
           imageSrc: p.images?.[0]?.url || '/placeholder.jpg',
           imageAlt: p.name,
           title: p.name,
