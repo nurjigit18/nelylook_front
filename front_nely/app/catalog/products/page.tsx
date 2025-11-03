@@ -302,7 +302,7 @@ export default function ProductsPage() {
                 return (
                   <ProductCard
                     key={product.id}
-                    href={`/catalog/products/${product.slug}`}
+                    href={`/catalog/products/${product.slug || product.id}`}
                     imageSrc={image?.url || '/placeholder-product.jpg'}
                     imageAlt={image?.alt_text || product.name}
                     title={product.name}
