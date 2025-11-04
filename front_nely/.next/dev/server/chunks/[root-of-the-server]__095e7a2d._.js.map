@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///E:/nelylook/front/front_nely/app/api/auth/register/route.ts"],"sourcesContent":["import { NextRequest, NextResponse } from 'next/server';\r\n\r\nconst BACKEND_URL = 'http://127.0.0.1:8000';\r\n\r\nexport async function POST(request: NextRequest) {\r\n  try {\r\n    const body = await request.json();\r\n    \r\n    const res = await fetch(`${BACKEND_URL}/auth/register/`, {\r\n      method: 'POST',\r\n      headers: {\r\n        'Content-Type': 'application/json',\r\n      },\r\n      body: JSON.stringify(body),\r\n    });\r\n\r\n    const data = await res.json();\r\n\r\n    return NextResponse.json(data, { status: res.status });\r\n  } catch (error) {\r\n    return NextResponse.json(\r\n      { detail: 'Ошибка сервера' },\r\n      { status: 500 }\r\n    );\r\n  }\r\n}"],"names":[],"mappings":";;;;AAAA;;AAEA,MAAM,cAAc;AAEb,eAAe,KAAK,OAAoB;IAC7C,IAAI;QACF,MAAM,OAAO,MAAM,QAAQ,IAAI;QAE/B,MAAM,MAAM,MAAM,MAAM,GAAG,YAAY,eAAe,CAAC,EAAE;YACvD,QAAQ;YACR,SAAS;gBACP,gBAAgB;YAClB;YACA,MAAM,KAAK,SAAS,CAAC;QACvB;QAEA,MAAM,OAAO,MAAM,IAAI,IAAI;QAE3B,OAAO,8JAAY,CAAC,IAAI,CAAC,MAAM;YAAE,QAAQ,IAAI,MAAM;QAAC;IACtD,EAAE,OAAO,OAAO;QACd,OAAO,8JAAY,CAAC,IAAI,CACtB;YAAE,QAAQ;QAAiB,GAC3B;YAAE,QAAQ;QAAI;IAElB;AACF","debugId":null}}]
+}

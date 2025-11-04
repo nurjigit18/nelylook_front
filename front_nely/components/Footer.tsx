@@ -7,19 +7,19 @@ import Link from "next/link";
 export default function Footer() {
   const footerLinks = {
     shop: [
-      { name: 'Новинки', href: '#' },
-      { name: 'Распродажа', href: '#' },
+      { name: 'Новинки', href: '/catalog/products?new_arrival=true' },
+      { name: 'Распродажа', href: '/catalog/products?on_sale=true' },
       { name: 'Коллекции', href: '#' },
       { name: 'Зима 2025', href: '#' },
     ],
     help: [
-      { name: 'Служба поддержки', href: '#' },
-      { name: 'Мой профиль', href: '#' },
+      { name: 'Служба поддержки', href: '/contact' },
+      { name: 'Мой профиль', href: '/account' },
       { name: 'Соглашения', href: '#' },
-      { name: 'Контакты', href: '#' },
+      { name: 'Контакты', href: '/contact' },
     ],
     about: [
-      { name: 'О нас', href: '#' },
+      { name: 'О нас', href: '/about' },
       { name: 'Сертификаты', href: '#' },
       { name: 'Новости', href: '#' },
       { name: 'Партнерство', href: '#' },

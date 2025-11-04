@@ -14,7 +14,7 @@ type Props = {
 
 export default function CollectionBanner({
   title = "Весеннее вдохновление\nКоллекция '25",
-  blurb = 'Light layers. Relaxed structure. A new era of everyday luxury.',
+  blurb = 'Легкие слои. Свободная структура. Новая эра повседневной роскоши.',
   ctaLabel = 'Смотреть коллекцию',
   ctaHref,
   imageSrc = '/banners/DSC05202.jpg',

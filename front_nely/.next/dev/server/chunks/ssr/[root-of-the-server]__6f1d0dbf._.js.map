@@ -1,0 +1,7 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 18, "column": 0}, "map": {"version":3,"sources":["file:///E:/nelylook/front/front_nely/components/Hero.tsx"],"sourcesContent":["// components/Hero.tsx\r\nexport default function Hero() {\r\n    return (\r\n      <section className=\"bg-gray-100 py-20 text-center\">\r\n        <h1 className=\"text-4xl font-semibold mb-4\">Effortless Styles</h1>\r\n        <p className=\"text-gray-600 mb-6\">\r\n          Designed for everyday comfort and elegance\r\n        </p>\r\n        <button className=\"bg-black text-white px-6 py-3 rounded-full\">\r\n          Shop Now\r\n        </button>\r\n      </section>\r\n    );\r\n  }\r\n  "],"names":[],"mappings":"AAAA,sBAAsB;;;;;;;AACP,SAAS;IACpB,qBACE,8OAAC;QAAQ,WAAU;;0BACjB,8OAAC;gBAAG,WAAU;0BAA8B;;;;;;0BAC5C,8OAAC;gBAAE,WAAU;0BAAqB;;;;;;0BAGlC,8OAAC;gBAAO,WAAU;0BAA6C;;;;;;;;;;;;AAKrE","debugId":null}},
+    {"offset": {"line": 64, "column": 0}, "map": {"version":3,"sources":["file:///E:/nelylook/front/front_nely/app/page.tsx"],"sourcesContent":["import Image from \"next/image\";\nimport Hero from \"@/components/Hero\";\n\n\nexport default function Page() {\n  return (\n    <>\n      <Hero />\n    </>\n  );\n}\n"],"names":[],"mappings":";;;;;AACA;;;AAGe,SAAS;IACtB,qBACE;kBACE,cAAA,8OAAC,8HAAI;;;;;;AAGX","debugId":null}}]
+}

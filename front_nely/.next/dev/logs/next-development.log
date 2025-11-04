@@ -1,0 +1,197 @@
+[00:00:03.121] Server  LOG      ✓ Ready in 2.1s
+[00:00:06.350] Server  LOG      ○ Compiling /catalog/products ...
+[00:00:26.520] Server  WARN     ⚠ Cross origin request detected from 10.201.0.150 to /_next/* resource. In a future major version of Next.js, you will need to explicitly configure "allowedDevOrigins" in next.config to allow this.
+Read more: https://nextjs.org/docs/app/api-reference/config/next-config-js/allowedDevOrigins
+[00:00:26.604] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:27.293] Browser WARN    Image with src "http://10.201.0.150:3000/logo_purple.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:27.294] Browser LOG     🚀 Starting category fetch...
+[00:00:27.704] Server  LOG      ○ Compiling /_not-found/page ...
+[00:00:27.714] Browser WARN    Image with src "/catalog/DSC05068.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:00:27.714] Browser WARN    Image with src "/catalog/DSC06087.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:00:29.826] Server  LOG     📡 Fetching categories from Django: "http://127.0.0.1:8000/catalog/categories/"
+[00:00:30.079] Server  LOG     🔍 /api/auth/me called
+[00:00:30.081] Server  LOG     🍪 All cookies: []
+[00:00:30.082] Server  LOG     🔑 Access token exists: false
+[00:00:30.083] Server  LOG     ❌ No access token found in cookies
+[00:00:30.664] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/banners/carousel1.jpg" "received" null
+[00:00:30.667] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/banners/DSC05202.jpg" "received" null
+[00:00:30.929] Server  ERROR   Error: The requested resource isn't a valid image.
+[00:00:31.001] Server  ERROR   Error: The requested resource isn't a valid image.
+[00:00:31.555] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:31.610] Server  LOG     ✅ Django response received: "[{\"id\":26,\"name\":\"Платья\",\"slug\":\"platia\",\"category_path\":null,\"description\":null,\"display_order\":1,\"is_active\":true,\"parent\":null,\"parent_name\":null},{\"id\":35,\"name\":\"Блузки\",\"slug\":\"bluzki\",\"categor"
+[00:00:31.611] Server  LOG     📊 Found direct array: 11
+[00:00:31.613] Server  LOG     📊 Returning categories: 11
+[00:00:31.739] Browser LOG     📡 Response status: 200 true
+[00:00:31.739] Browser LOG     📦 Categories data received: [{"category_path":null,"description":null,"display_order":1,"id":26,"is_active":true,"name":"Платья","parent":null,"parent_name":null,"slug":"platia"},{"category_path":null,"description":null,"display_order":null,"id":35,"is_active":true,"name":"Блузки","parent":null,"parent_name":null,"slug":"bluzki"},{"category_path":null,"description":null,"display_order":null,"id":31,"is_active":true,"name":"Бомберы","parent":null,"parent_name":null,"slug":"bombery"},{"category_path":null,"description":null,"display_order":null,"id":28,"is_active":true,"name":"Брюки","parent":null,"parent_name":null,"slug":"briuki"},{"category_path":null,"description":null,"display_order":null,"id":34,"is_active":true,"name":"Брючный костюм","parent":null,"parent_name":null,"slug":"briuchnyi-kostium"},{"category_path":null,"description":null,"display_order":null,"id":33,"is_active":true,"name":"Рубашки","parent":null,"parent_name":null,"slug":"rubashka"},{"category_path":null,"description":null,"display_order":null,"id":27,"is_active":true,"name":"Спортивные костюмы","parent":null,"parent_name":null,"slug":"sportivnye-kostiumy"},{"category_path":null,"description":null,"display_order":null,"id":30,"is_active":true,"name":"Толстовки","parent":null,"parent_name":null,"slug":"tolstovki"},{"category_path":null,"description":null,"display_order":null,"id":36,"is_active":true,"name":"Футболки","parent":null,"parent_name":null,"slug":"futbolki"},{"category_path":null,"description":null,"display_order":null,"id":29,"is_active":true,"name":"Штаны","parent":null,"parent_name":null,"slug":"shtany"},{"category_path":null,"description":null,"display_order":null,"id":32,"is_active":true,"name":"Юбки","parent":null,"parent_name":null,"slug":"iubki"}]
+[00:00:31.739] Browser LOG     📊 Is array? true
+[00:00:31.739] Browser LOG     📊 Count: 11
+[00:00:31.739] Browser LOG     ✅ Setting categories: 11
+[00:00:32.064] Server  LOG     📡 Fetching categories from Django: "http://127.0.0.1:8000/catalog/categories/"
+[00:00:32.168] Server  LOG     🔍 /api/auth/me called
+[00:00:32.170] Server  LOG     🍪 All cookies: ["refresh_token","__next_hmr_refresh_hash__"]
+[00:00:32.171] Server  LOG     🔑 Access token exists: false
+[00:00:32.172] Server  LOG     ❌ No access token found in cookies
+[00:00:32.314] Server  LOG     ✅ Django response received: "[{\"id\":26,\"name\":\"Платья\",\"slug\":\"platia\",\"category_path\":null,\"description\":null,\"display_order\":1,\"is_active\":true,\"parent\":null,\"parent_name\":null},{\"id\":35,\"name\":\"Блузки\",\"slug\":\"bluzki\",\"categor"
+[00:00:32.373] Server  LOG     📊 Found direct array: 11
+[00:00:32.385] Server  LOG     📊 Returning categories: 11
+[00:00:32.706] Server  LOG     📡 Fetching filters from Django: "http://127.0.0.1:8000/catalog/products/filters/"
+[00:00:33.032] Browser WARN    Image with src "http://localhost:3000/logo_purple.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:00:33.032] Browser LOG     🚀 Starting category fetch...
+[00:00:33.032] Browser LOG     📡 Response status: 200 true
+[00:00:33.032] Browser LOG     📦 Categories data received: [{"category_path":null,"description":null,"display_order":1,"id":26,"is_active":true,"name":"Платья","parent":null,"parent_name":null,"slug":"platia"},{"category_path":null,"description":null,"display_order":null,"id":35,"is_active":true,"name":"Блузки","parent":null,"parent_name":null,"slug":"bluzki"},{"category_path":null,"description":null,"display_order":null,"id":31,"is_active":true,"name":"Бомберы","parent":null,"parent_name":null,"slug":"bombery"},{"category_path":null,"description":null,"display_order":null,"id":28,"is_active":true,"name":"Брюки","parent":null,"parent_name":null,"slug":"briuki"},{"category_path":null,"description":null,"display_order":null,"id":34,"is_active":true,"name":"Брючный костюм","parent":null,"parent_name":null,"slug":"briuchnyi-kostium"},{"category_path":null,"description":null,"display_order":null,"id":33,"is_active":true,"name":"Рубашки","parent":null,"parent_name":null,"slug":"rubashka"},{"category_path":null,"description":null,"display_order":null,"id":27,"is_active":true,"name":"Спортивные костюмы","parent":null,"parent_name":null,"slug":"sportivnye-kostiumy"},{"category_path":null,"description":null,"display_order":null,"id":30,"is_active":true,"name":"Толстовки","parent":null,"parent_name":null,"slug":"tolstovki"},{"category_path":null,"description":null,"display_order":null,"id":36,"is_active":true,"name":"Футболки","parent":null,"parent_name":null,"slug":"futbolki"},{"category_path":null,"description":null,"display_order":null,"id":29,"is_active":true,"name":"Штаны","parent":null,"parent_name":null,"slug":"shtany"},{"category_path":null,"description":null,"display_order":null,"id":32,"is_active":true,"name":"Юбки","parent":null,"parent_name":null,"slug":"iubki"}]
+[00:00:33.032] Browser LOG     📊 Is array? true
+[00:00:33.032] Browser LOG     📊 Count: 11
+[00:00:33.033] Browser LOG     ✅ Setting categories: 11
+[00:00:33.224] Server  LOG     📥 Django filters response status: 200
+[00:00:33.228] Server  LOG     ✅ Filters fetched from Django
+[00:00:33.507] Server  LOG     📡 Fetching products from Django: "http://127.0.0.1:8000/catalog/products/?min_price=1999&max_price=12000&page=1&page_size=20"
+[00:00:35.032] Browser LOG     🖱️ Mouse entered Каталог
+[00:00:35.032] Browser LOG     🖱️ Mouse left Каталог container
+[00:00:36.096] Server  LOG     📥 Django response status: 200
+[00:00:36.105] Server  LOG     ✅ Products fetched from Django
+[00:00:37.049] Browser WARN    Image with src "https://kdovjemhivvkahufqlwh.supabase.co/storage/v1/object/public/product-images/black-dress.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:00:37.049] Browser WARN    Image with src "https://kdovjemhivvkahufqlwh.supabase.co/storage/v1/object/public/product-images/pink.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:00:37.049] Browser WARN    Image with src "https://kdovjemhivvkahufqlwh.supabase.co/storage/v1/object/public/product-images/short.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:00:37.049] Browser WARN    Image with src "https://kdovjemhivvkahufqlwh.supabase.co/storage/v1/object/public/product-images/adidas.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:00:37.049] Browser WARN    Image with src "https://kdovjemhivvkahufqlwh.supabase.co/storage/v1/object/public/product-images/sport.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:00:37.049] Browser WARN    Image with src "https://kdovjemhivvkahufqlwh.supabase.co/storage/v1/object/public/product-images/products/1.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:05:28.730] Browser WARN    Image with src "https://kdovjemhivvkahufqlwh.supabase.co/storage/v1/object/public/product-images/black-dress.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:08:31.829] Browser LOG     🖱️ Mouse entered Каталог
+[00:08:31.829] Browser LOG     🖱️ Mouse left Каталог container
+[00:08:32.661] Browser LOG     🖱️ Mouse entered Каталог
+[00:08:32.661] Browser LOG     🖱️ Mouse left Каталог container
+[00:08:33.027] Browser LOG     🖱️ Mouse entered Каталог
+[00:08:33.643] Browser LOG     🖱️ Mouse in dropdown
+[00:08:38.609] Browser LOG     🖱️ Mouse left dropdown
+[00:08:38.609] Browser LOG     🖱️ Mouse left Каталог container
+[00:08:39.318] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:08:39.417] Browser WARN    Image with src "/catalog/DSC05068.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:08:39.417] Browser WARN    Image with src "/catalog/DSC06087.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:14:28.008] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/green-china.jpg" "received" null
+[00:14:31.598] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/green-china.png" "received" null
+[00:14:45.032] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
+[00:14:45.032] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
+[00:14:45.032] Browser ERROR   uncaughtError: Error: Failed to parse src "catalog/green-china.png" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
+[00:14:55.477] Server  ERROR   TypeError: Invalid URL
+[00:14:55.530] Server  ERROR    ⨯ Error: Failed to parse src "catalog/green-china.png" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
+[00:14:56.359] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:14:57.040] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
+[00:14:57.040] Browser ERROR   {"message":"Failed to construct 'URL': Invalid URL"}
+[00:14:57.040] Browser ERROR   uncaughtError: Error: Failed to parse src "catalog/green-china.png" on `next/image`, if using relative image it must start with a leading slash "/" or be an absolute URL (http:// or https://)
+[00:15:15.683] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:15:16.126] Server  LOG     🔍 /api/auth/me called
+[00:15:16.130] Server  LOG     🍪 All cookies: ["refresh_token","__next_hmr_refresh_hash__"]
+[00:15:16.133] Server  LOG     🔑 Access token exists: false
+[00:15:16.162] Server  LOG     ❌ No access token found in cookies
+[00:15:16.201] Server  LOG     📡 Fetching categories from Django: "http://127.0.0.1:8000/catalog/categories/"
+[00:15:16.239] Browser WARN    Image with src "http://localhost:3000/logo_purple.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:15:16.239] Browser LOG     🚀 Starting category fetch...
+[00:15:16.264] Browser WARN    Image with src "/catalog/DSC05068.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:15:16.264] Browser WARN    Image with src "/catalog/DSC06087.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:15:20.979] Server  LOG     ✅ Django response received: "[{\"id\":26,\"name\":\"Платья\",\"slug\":\"platia\",\"category_path\":null,\"description\":null,\"display_order\":1,\"is_active\":true,\"parent\":null,\"parent_name\":null},{\"id\":35,\"name\":\"Блузки\",\"slug\":\"bluzki\",\"categor"
+[00:15:20.981] Server  LOG     📊 Found direct array: 11
+[00:15:20.981] Server  LOG     📊 Returning categories: 11
+[00:15:21.101] Browser LOG     📡 Response status: 200 true
+[00:15:21.101] Browser LOG     📦 Categories data received: [{"category_path":null,"description":null,"display_order":1,"id":26,"is_active":true,"name":"Платья","parent":null,"parent_name":null,"slug":"platia"},{"category_path":null,"description":null,"display_order":null,"id":35,"is_active":true,"name":"Блузки","parent":null,"parent_name":null,"slug":"bluzki"},{"category_path":null,"description":null,"display_order":null,"id":31,"is_active":true,"name":"Бомберы","parent":null,"parent_name":null,"slug":"bombery"},{"category_path":null,"description":null,"display_order":null,"id":28,"is_active":true,"name":"Брюки","parent":null,"parent_name":null,"slug":"briuki"},{"category_path":null,"description":null,"display_order":null,"id":34,"is_active":true,"name":"Брючный костюм","parent":null,"parent_name":null,"slug":"briuchnyi-kostium"},{"category_path":null,"description":null,"display_order":null,"id":33,"is_active":true,"name":"Рубашки","parent":null,"parent_name":null,"slug":"rubashka"},{"category_path":null,"description":null,"display_order":null,"id":27,"is_active":true,"name":"Спортивные костюмы","parent":null,"parent_name":null,"slug":"sportivnye-kostiumy"},{"category_path":null,"description":null,"display_order":null,"id":30,"is_active":true,"name":"Толстовки","parent":null,"parent_name":null,"slug":"tolstovki"},{"category_path":null,"description":null,"display_order":null,"id":36,"is_active":true,"name":"Футболки","parent":null,"parent_name":null,"slug":"futbolki"},{"category_path":null,"description":null,"display_order":null,"id":29,"is_active":true,"name":"Штаны","parent":null,"parent_name":null,"slug":"shtany"},{"category_path":null,"description":null,"display_order":null,"id":32,"is_active":true,"name":"Юбки","parent":null,"parent_name":null,"slug":"iubki"}]
+[00:15:21.101] Browser LOG     📊 Is array? true
+[00:15:21.101] Browser LOG     📊 Count: 11
+[00:15:21.101] Browser LOG     ✅ Setting categories: 11
+[00:18:19.020] Server  LOG      ✓ Compiled in 292ms
+[00:18:23.438] Server  LOG      ○ Compiling /catalog/[category_slug] ...
+[00:18:26.984] Server  WARN    Error: Route "/catalog/[category_slug]" used `params.category_slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:18:27.056] Server  WARN    Error: Route "/catalog/[category_slug]" used `params.category_slug`. `params` is a Promise and must be unwrapped with `await` or `React.use()` before accessing its properties. Learn more: https://nextjs.org/docs/messages/sync-dynamic-apis
+[00:18:28.645] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/catalog/grey-main.png" "received" null
+[00:20:05.345] Server  ERROR    ⨯ "The requested resource isn't a valid image for" "/banners/carousel2.jpg" "received" null
+[00:20:05.419] Server  ERROR   Error: The requested resource isn't a valid image.
+[00:24:16.512] Server  LOG      ✓ Compiled in 172ms
+[00:24:38.043] Server  LOG      ✓ Compiled in 177ms
+[00:25:11.991] Server  LOG      ✓ Compiled in 118ms
+[00:25:26.857] Server  LOG      ✓ Compiled in 171ms
+[00:26:20.617] Server  LOG      ✓ Compiled in 168ms
+[00:30:23.776] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:30:40.341] Server  LOG     🔐 Login attempt for: "nurzhigitkurmanov@gmail.com"
+[00:30:44.837] Server  LOG     📥 Django response status: 200
+[00:30:44.840] Server  LOG     📦 Django response data: "{\n  \"status\": \"success\",\n  \"message\": \"Login successful\",\n  \"data\": {\n    \"refresh\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTc2NDg0Njg4OSwiaWF0IjoxNzYyMjU0ODg5LCJqdGkiOiJiNjliMDVhMmQ4Mjc0ZTY1OWU1ZThhYmFiYTliYjkxMSIsInVzZXJfaWQiOiI3NyJ9.3tqMZ_kPoYYVpAAo7NTXKtPB5OEXuYHB88fLEIF85Vg\",\n    \"access\": \"eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzYyMjU4NDg5LCJpYXQiOjE3NjIyNTQ4OTAsImp0aSI6IjY1N2UyMzQyZDY3ZTRiODQ5NjUwODkxMzZhZTY1MDEzIiwidXNlcl9pZCI6Ijc3In0.3Zur6p2Q3hx-8yFEshqA7hD6egS1xGq1wjMah27Dr0s\",\n    \"user\": {\n      \"id\": 77,\n      \"email\": \"nurzhigitkurmanov@gmail.com\",\n      \"first_name\": \"Нуржигит\",\n      \"phone\": \"+996705123456\",\n      \"role\": \"customer\",\n      \"is_staff\": false,\n      \"is_superuser\": false\n    }\n  }\n}"
+[00:30:44.842] Server  LOG     🎫 Access token exists: true
+[00:30:44.843] Server  LOG     🎫 Refresh token exists: true
+[00:30:44.844] Server  LOG     🎫 Access token preview: "eyJhbGciOiJIUzI1NiIsInR5cCI6Ik..."
+[00:30:44.846] Server  LOG     ✅ Setting access_token cookie
+[00:30:44.849] Server  LOG     ✅ Setting refresh_token cookie
+[00:30:44.850] Server  LOG     ✅ Login successful, cookies set
+[00:30:46.266] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:30:46.501] Server  LOG     🔍 /api/auth/me called
+[00:30:46.507] Server  LOG     🍪 All cookies: ["__next_hmr_refresh_hash__","access_token","refresh_token"]
+[00:30:46.508] Server  LOG     🔑 Access token exists: true
+[00:30:46.509] Server  LOG     🔑 Access token preview: "eyJhbGciOiJIUzI1NiIsInR5cCI6Ik..."
+[00:30:46.510] Server  LOG     📡 Calling Django /auth/me/...
+[00:30:46.539] Server  LOG     📡 Fetching categories from Django: "http://127.0.0.1:8000/catalog/categories/"
+[00:30:46.558] Browser WARN    Image with src "http://localhost:3000/logo_purple.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:30:46.558] Browser LOG     🚀 Starting category fetch...
+[00:30:46.658] Server  LOG     📥 Django /auth/me/ response status: 200
+[00:30:46.664] Server  LOG     ✅ User fetched successfully: {}
+[00:30:46.762] Browser WARN    Image with src "/catalog/DSC05068.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:30:46.762] Browser WARN    Image with src "/catalog/DSC06087.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:30:49.105] Server  LOG     ✅ Django response received: "[{\"id\":26,\"name\":\"Платья\",\"slug\":\"platia\",\"category_path\":null,\"description\":null,\"display_order\":1,\"is_active\":true,\"parent\":null,\"parent_name\":null},{\"id\":35,\"name\":\"Блузки\",\"slug\":\"bluzki\",\"categor"
+[00:30:49.106] Server  LOG     📊 Found direct array: 11
+[00:30:49.107] Server  LOG     📊 Returning categories: 11
+[00:30:49.218] Browser LOG     📡 Response status: 200 true
+[00:30:49.218] Browser LOG     📦 Categories data received: [{"category_path":null,"description":null,"display_order":1,"id":26,"is_active":true,"name":"Платья","parent":null,"parent_name":null,"slug":"platia"},{"category_path":null,"description":null,"display_order":null,"id":35,"is_active":true,"name":"Блузки","parent":null,"parent_name":null,"slug":"bluzki"},{"category_path":null,"description":null,"display_order":null,"id":31,"is_active":true,"name":"Бомберы","parent":null,"parent_name":null,"slug":"bombery"},{"category_path":null,"description":null,"display_order":null,"id":28,"is_active":true,"name":"Брюки","parent":null,"parent_name":null,"slug":"briuki"},{"category_path":null,"description":null,"display_order":null,"id":34,"is_active":true,"name":"Брючный костюм","parent":null,"parent_name":null,"slug":"briuchnyi-kostium"},{"category_path":null,"description":null,"display_order":null,"id":33,"is_active":true,"name":"Рубашки","parent":null,"parent_name":null,"slug":"rubashka"},{"category_path":null,"description":null,"display_order":null,"id":27,"is_active":true,"name":"Спортивные костюмы","parent":null,"parent_name":null,"slug":"sportivnye-kostiumy"},{"category_path":null,"description":null,"display_order":null,"id":30,"is_active":true,"name":"Толстовки","parent":null,"parent_name":null,"slug":"tolstovki"},{"category_path":null,"description":null,"display_order":null,"id":36,"is_active":true,"name":"Футболки","parent":null,"parent_name":null,"slug":"futbolki"},{"category_path":null,"description":null,"display_order":null,"id":29,"is_active":true,"name":"Штаны","parent":null,"parent_name":null,"slug":"shtany"},{"category_path":null,"description":null,"display_order":null,"id":32,"is_active":true,"name":"Юбки","parent":null,"parent_name":null,"slug":"iubki"}]
+[00:30:49.218] Browser LOG     📊 Is array? true
+[00:30:49.218] Browser LOG     📊 Count: 11
+[00:30:49.218] Browser LOG     ✅ Setting categories: 11
+[00:30:55.652] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:30:55.769] Server  LOG     📡 Fetching categories from Django: "http://127.0.0.1:8000/catalog/categories/"
+[00:30:55.795] Server  LOG     🔍 /api/auth/me called
+[00:30:55.797] Server  LOG     🍪 All cookies: ["__next_hmr_refresh_hash__","access_token","refresh_token"]
+[00:30:55.798] Server  LOG     🔑 Access token exists: true
+[00:30:55.802] Server  LOG     🔑 Access token preview: "eyJhbGciOiJIUzI1NiIsInR5cCI6Ik..."
+[00:30:55.805] Server  LOG     📡 Calling Django /auth/me/...
+[00:30:55.837] Browser WARN    Image with src "http://localhost:3000/logo_purple.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:30:55.837] Browser LOG     🚀 Starting category fetch...
+[00:30:57.068] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:30:57.376] Server  LOG     🔍 /api/auth/me called
+[00:30:57.377] Server  LOG     🍪 All cookies: ["__next_hmr_refresh_hash__","access_token","refresh_token"]
+[00:30:57.378] Server  LOG     🔑 Access token exists: true
+[00:30:57.379] Server  LOG     🔑 Access token preview: "eyJhbGciOiJIUzI1NiIsInR5cCI6Ik..."
+[00:30:57.380] Server  LOG     📡 Calling Django /auth/me/...
+[00:30:57.400] Server  LOG     📡 Fetching categories from Django: "http://127.0.0.1:8000/catalog/categories/"
+[00:30:57.430] Browser WARN    Image with src "http://localhost:3000/logo_purple.svg" has either width or height modified, but not the other. If you use CSS to change the size of your image, also include the styles 'width: "auto"' or 'height: "auto"' to maintain the aspect ratio.
+[00:30:57.431] Browser LOG     🚀 Starting category fetch...
+[00:30:57.615] Browser WARN    Image with src "/catalog/DSC05068.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:30:57.615] Browser WARN    Image with src "/catalog/DSC06087.jpg" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:30:58.102] Server  LOG     ✅ Django response received: "[{\"id\":26,\"name\":\"Платья\",\"slug\":\"platia\",\"category_path\":null,\"description\":null,\"display_order\":1,\"is_active\":true,\"parent\":null,\"parent_name\":null},{\"id\":35,\"name\":\"Блузки\",\"slug\":\"bluzki\",\"categor"
+[00:30:58.103] Server  LOG     📊 Found direct array: 11
+[00:30:58.103] Server  LOG     📊 Returning categories: 11
+[00:30:58.217] Server  LOG     📥 Django /auth/me/ response status: 200
+[00:30:58.222] Server  LOG     ✅ User fetched successfully: {}
+[00:30:59.240] Server  LOG     ✅ Django response received: "[{\"id\":26,\"name\":\"Платья\",\"slug\":\"platia\",\"category_path\":null,\"description\":null,\"display_order\":1,\"is_active\":true,\"parent\":null,\"parent_name\":null},{\"id\":35,\"name\":\"Блузки\",\"slug\":\"bluzki\",\"categor"
+[00:30:59.241] Server  LOG     📊 Found direct array: 11
+[00:30:59.242] Server  LOG     📊 Returning categories: 11
+[00:30:59.250] Server  LOG     📥 Django /auth/me/ response status: 200
+[00:30:59.256] Server  LOG     ✅ User fetched successfully: {}
+[00:30:59.347] Browser LOG     📡 Response status: 200 true
+[00:30:59.347] Browser LOG     📦 Categories data received: [{"category_path":null,"description":null,"display_order":1,"id":26,"is_active":true,"name":"Платья","parent":null,"parent_name":null,"slug":"platia"},{"category_path":null,"description":null,"display_order":null,"id":35,"is_active":true,"name":"Блузки","parent":null,"parent_name":null,"slug":"bluzki"},{"category_path":null,"description":null,"display_order":null,"id":31,"is_active":true,"name":"Бомберы","parent":null,"parent_name":null,"slug":"bombery"},{"category_path":null,"description":null,"display_order":null,"id":28,"is_active":true,"name":"Брюки","parent":null,"parent_name":null,"slug":"briuki"},{"category_path":null,"description":null,"display_order":null,"id":34,"is_active":true,"name":"Брючный костюм","parent":null,"parent_name":null,"slug":"briuchnyi-kostium"},{"category_path":null,"description":null,"display_order":null,"id":33,"is_active":true,"name":"Рубашки","parent":null,"parent_name":null,"slug":"rubashka"},{"category_path":null,"description":null,"display_order":null,"id":27,"is_active":true,"name":"Спортивные костюмы","parent":null,"parent_name":null,"slug":"sportivnye-kostiumy"},{"category_path":null,"description":null,"display_order":null,"id":30,"is_active":true,"name":"Толстовки","parent":null,"parent_name":null,"slug":"tolstovki"},{"category_path":null,"description":null,"display_order":null,"id":36,"is_active":true,"name":"Футболки","parent":null,"parent_name":null,"slug":"futbolki"},{"category_path":null,"description":null,"display_order":null,"id":29,"is_active":true,"name":"Штаны","parent":null,"parent_name":null,"slug":"shtany"},{"category_path":null,"description":null,"display_order":null,"id":32,"is_active":true,"name":"Юбки","parent":null,"parent_name":null,"slug":"iubki"}]
+[00:30:59.347] Browser LOG     📊 Is array? true
+[00:30:59.347] Browser LOG     📊 Count: 11
+[00:30:59.347] Browser LOG     ✅ Setting categories: 11
+[00:31:42.320] Server  LOG      ✓ Compiled in 615ms
+[00:34:46.541] Server  LOG     📡 Fetching filters from Django: "http://127.0.0.1:8000/catalog/products/filters/"
+[00:34:46.587] Browser WARN    Detected `scroll-behavior: smooth` on the `<html>` element. To disable smooth scrolling during route transitions, add `data-scroll-behavior="smooth"` to your <html> element. Learn more: https://nextjs.org/docs/messages/missing-data-scroll-behavior
+[00:34:48.512] Browser LOG     🖱️ Mouse entered Каталог
+[00:34:49.078] Browser LOG     🖱️ Mouse left Каталог container
+[00:34:50.819] Server  LOG     📥 Django filters response status: 200
+[00:34:50.821] Server  LOG     ✅ Filters fetched from Django
+[00:34:50.851] Server  LOG     📡 Fetching filters from Django: "http://127.0.0.1:8000/catalog/products/filters/"
+[00:34:50.867] Server  LOG     📡 Fetching products from Django: "http://127.0.0.1:8000/catalog/products/?on_sale=true&min_price=1999&max_price=12000&page=1&page_size=20"
+[00:34:51.766] Server  LOG     📥 Django filters response status: 200
+[00:34:51.768] Server  LOG     ✅ Filters fetched from Django
+[00:35:01.211] Server  LOG     📥 Django response status: 200
+[00:35:01.213] Server  LOG     ✅ Products fetched from Django
+[00:35:01.233] Server  LOG     📡 Fetching products from Django: "http://127.0.0.1:8000/catalog/products/?on_sale=true&min_price=1999&max_price=12000&page=1&page_size=20"
+[00:35:02.030] Browser WARN    Image with src "https://kdovjemhivvkahufqlwh.supabase.co/storage/v1/object/public/product-images/pink.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:35:02.030] Browser WARN    Image with src "https://kdovjemhivvkahufqlwh.supabase.co/storage/v1/object/public/product-images/black-dress.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:35:02.030] Browser WARN    Image with src "https://kdovjemhivvkahufqlwh.supabase.co/storage/v1/object/public/product-images/adidas.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:35:02.030] Browser WARN    Image with src "https://kdovjemhivvkahufqlwh.supabase.co/storage/v1/object/public/product-images/products/1.png" has "fill" and parent element with invalid "position". Provided "static" should be one of absolute,fixed,relative.
+[00:35:08.767] Server  LOG     📥 Django response status: 200
+[00:35:08.769] Server  LOG     ✅ Products fetched from Django

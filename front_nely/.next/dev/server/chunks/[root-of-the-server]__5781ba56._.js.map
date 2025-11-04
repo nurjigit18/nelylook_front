@@ -1,0 +1,6 @@
+{
+  "version": 3,
+  "sources": [],
+  "sections": [
+    {"offset": {"line": 46, "column": 0}, "map": {"version":3,"sources":["file:///E:/nelylook/front/front_nely/app/api/auth/logout/route.ts"],"sourcesContent":["// app/api/auth/logout/route.ts\r\nimport { NextRequest, NextResponse } from 'next/server';\r\nimport { redirect } from 'next/navigation';\r\n\r\nexport async function POST(request: NextRequest) {\r\n  const response = NextResponse.redirect(new URL('/', request.url));\r\n  \r\n  // Clear auth cookies\r\n  response.cookies.delete('access_token');\r\n  response.cookies.delete('refresh_token');\r\n  \r\n  return response;\r\n}"],"names":[],"mappings":"AAAA,+BAA+B;;;;;AAC/B;;AAGO,eAAe,KAAK,OAAoB;IAC7C,MAAM,WAAW,8JAAY,CAAC,QAAQ,CAAC,IAAI,IAAI,KAAK,QAAQ,GAAG;IAE/D,qBAAqB;IACrB,SAAS,OAAO,CAAC,MAAM,CAAC;IACxB,SAAS,OAAO,CAAC,MAAM,CAAC;IAExB,OAAO;AACT","debugId":null}}]
+}

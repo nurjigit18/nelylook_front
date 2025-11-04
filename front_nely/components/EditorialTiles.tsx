@@ -16,28 +16,28 @@ export default function EditorialTiles({
     {
       title: 'Весна 2025',
       blurb:
-        'Begin the day wrapped in ease. Light cotton layers made for coffee runs and journaling time.',
+        'Начните день с лёгкостью. Лёгкие хлопковые модели идеально подойдут для пробежек за кофе и ведения дневника.',
       imageSrc: '/tiles/DSC05068.JPG',
       imageAlt: 'Woman in soft loungewear drinking coffee by the window',
     },
     {
       title: 'В трендах',
       blurb:
-        'Minimalist tailoring that keeps you centered and sharp wherever your office may be.',
+        'Минималистский пошив поможет вам сохранять собранность и собранность, где бы ни находился ваш офис.',
       imageSrc: '/tiles/DSC05424.JPG',
       imageAlt: 'Cream blazer set at a desk',
     },
     {
       title: 'Все для вечера',
       blurb:
-        'Light layers with just the right polish for gallery nights or slow dinners out.',
+        'Легкие слои с подходящим лаком для походов в галерею или неторопливых ужинов в ресторане.',
       imageSrc: '/tiles/DSC06087.JPG',
       imageAlt: 'Black satin set in a warm-lit corridor',
     },
     {
       title: 'На каждый день',
       blurb:
-        'Off-duty pieces that move with you. For markets, books, and late brunches.',
+        'Вещи, которые не будут лишними, и которые всегда с вами. Для магазинов, книг и поздних завтраков.',
       imageSrc: '/tiles/DSC06197.JPG',
       imageAlt: 'Cozy reading at home in a sweatshirt set',
     },

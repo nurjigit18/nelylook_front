@@ -1,0 +1,12 @@
+{
+  "/(auth)/login/page": "app/(auth)/login/page.js",
+  "/_not-found/page": "app/_not-found/page.js",
+  "/api/auth/login/route": "app/api/auth/login/route.js",
+  "/api/auth/me/route": "app/api/auth/me/route.js",
+  "/api/catalog/categories/route": "app/api/catalog/categories/route.js",
+  "/api/catalog/products/filters/route": "app/api/catalog/products/filters/route.js",
+  "/api/catalog/products/route": "app/api/catalog/products/route.js",
+  "/catalog/[category_slug]/page": "app/catalog/[category_slug]/page.js",
+  "/catalog/products/page": "app/catalog/products/page.js",
+  "/page": "app/page.js"
+}

@@ -57,60 +57,80 @@ type Filters = {
 export default function ProductsPage() {
   const router = useRouter();
   const searchParams = useSearchParams();
-  
-  // State
+
+  // data
   const [products, setProducts] = useState<Product[]>([]);
   const [filters, setFilters] = useState<Filters | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const [filterDrawerOpen, setFilterDrawerOpen] = useState(false);
-  
-  // Filter state
+
+  // filter state
   const [selectedCategories, setSelectedCategories] = useState<number[]>([]);
   const [selectedColors, setSelectedColors] = useState<number[]>([]);
   const [selectedSizes, setSelectedSizes] = useState<number[]>([]);
   const [priceRange, setPriceRange] = useState<[number, number]>([0, 10000]);
   const [selectedSeasons, setSelectedSeasons] = useState<string[]>([]);
   const [searchQuery, setSearchQuery] = useState('');
-  
-  // Pagination
+  const [onSale, setOnSale] = useState(false);
+  const [isNewArrival, setIsNewArrival] = useState(false);
+  // pagination
   const [page, setPage] = useState(1);
   const [hasMore, setHasMore] = useState(true);
 
-  // Load filters on mount
+  // load filters on mount
   useEffect(() => {
     loadFilters();
   }, []);
+  useEffect(() => {
+    const saleParam = searchParams.get('on_sale');
+    const newParam = searchParams.get('new_arrival');
+  
+    if (saleParam === 'true') {
+      setOnSale(true);
+    }
+    if (newParam === 'true') {
+      setIsNewArrival(true);
+    }
+  }, [searchParams]);
 
-  // Load products when filters change
+  // load products when filters change
   useEffect(() => {
     if (filters) {
       loadProducts();
     }
-  }, [selectedCategories, selectedColors, selectedSizes, priceRange, selectedSeasons, searchQuery, page]);
+  }, [
+    selectedCategories,
+    selectedColors,
+    selectedSizes,
+    priceRange,
+    selectedSeasons,
+    searchQuery,
+    onSale,         
+    isNewArrival,    
+    page,
+  ]);
+  
 
   async function loadFilters() {
     try {
       const res = await fetch('/api/catalog/products/filters');
-      
+
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({ detail: 'Failed to load filters' }));
         throw new Error(errorData.detail || 'Failed to load filters');
       }
-      
+
       const data = await res.json();
-      console.log('✅ Filters loaded:', data);
-      
       setFilters(data);
-      
+
       if (data.price_range) {
         setPriceRange([
           data.price_range.min_price || 0,
-          data.price_range.max_price || 10000
+          data.price_range.max_price || 10000,
         ]);
       }
     } catch (err: any) {
-      console.error('❌ Error loading filters:', err);
       setError(err.message);
     }
   }
@@ -118,45 +138,55 @@ export default function ProductsPage() {
   async function loadProducts() {
     try {
       setLoading(true);
-      
+
       const params = new URLSearchParams();
-      
+
       if (searchQuery) params.append('search', searchQuery);
-      if (selectedCategories.length) params.append('categories', selectedCategories.join(','));
-      if (selectedColors.length) params.append('colors', selectedColors.join(','));
-      if (selectedSizes.length) params.append('sizes', selectedSizes.join(','));
-      if (selectedSeasons.length) params.append('season', selectedSeasons.join(','));
+
+      // IMPORTANT: names must match backend
+      if (selectedCategories.length) {
+        params.append('category', selectedCategories.join(','));
+      }
+      if (selectedColors.length) {
+        params.append('color', selectedColors.join(','));
+      }
+      if (selectedSizes.length) {
+        params.append('size', selectedSizes.join(','));
+      }
+      if (selectedSeasons.length) {
+        params.append('season', selectedSeasons.join(','));
+      }
+      if (onSale) params.append('on_sale', 'true');
+      if (isNewArrival) params.append('new_arrival', 'true');
+
+      // price
       if (priceRange[0] > 0) params.append('min_price', priceRange[0].toString());
-      if (priceRange[1] < 10000) params.append('max_price', priceRange[1].toString());
+      // you can use filters?.price_range.max_price as upper bound
+      if (priceRange[1] < 1000000) params.append('max_price', priceRange[1].toString());
+
+      // pagination
       params.append('page', page.toString());
       params.append('page_size', '20');
-      
-      console.log('📡 Loading products with params:', params.toString());
-      
+
       const res = await fetch(`/api/catalog/products?${params.toString()}`);
-      
+
       if (!res.ok) {
         const errorData = await res.json().catch(() => ({ detail: 'Failed to load products' }));
         throw new Error(errorData.detail || 'Failed to load products');
       }
-      
+
       const data = await res.json();
-      console.log('✅ Products loaded:', data);
-      
       const productList = data.results || [];
-      
-      console.log('📦 Product count:', productList.length);
-      
+
       if (page === 1) {
         setProducts(productList);
       } else {
-        setProducts(prev => [...prev, ...productList]);
+        setProducts((prev) => [...prev, ...productList]);
       }
-      
+
       setHasMore(!!data.next);
       setError(null);
     } catch (err: any) {
-      console.error('❌ Error loading products:', err);
       setError(err.message);
     } finally {
       setLoading(false);
@@ -168,10 +198,12 @@ export default function ProductsPage() {
     setSelectedColors([]);
     setSelectedSizes([]);
     setSelectedSeasons([]);
+    setOnSale(false);
+    setIsNewArrival(false);
     if (filters?.price_range) {
       setPriceRange([
         filters.price_range.min_price || 0,
-        filters.price_range.max_price || 10000
+        filters.price_range.max_price || 10000,
       ]);
     }
     setSearchQuery('');
@@ -179,60 +211,45 @@ export default function ProductsPage() {
   }
 
   function toggleCategory(id: number) {
-    setSelectedCategories(prev =>
-      prev.includes(id) ? prev.filter(c => c !== id) : [...prev, id]
+    setSelectedCategories((prev) =>
+      prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]
     );
     setPage(1);
   }
 
   function toggleColor(id: number) {
-    setSelectedColors(prev =>
-      prev.includes(id) ? prev.filter(c => c !== id) : [...prev, id]
+    setSelectedColors((prev) =>
+      prev.includes(id) ? prev.filter((c) => c !== id) : [...prev, id]
     );
     setPage(1);
   }
 
   function toggleSize(id: number) {
-    setSelectedSizes(prev =>
-      prev.includes(id) ? prev.filter(s => s !== id) : [...prev, id]
+    setSelectedSizes((prev) =>
+      prev.includes(id) ? prev.filter((s) => s !== id) : [...prev, id]
     );
     setPage(1);
   }
 
   function toggleSeason(value: string) {
-    setSelectedSeasons(prev =>
-      prev.includes(value) ? prev.filter(s => s !== value) : [...prev, value]
+    setSelectedSeasons((prev) =>
+      prev.includes(value) ? prev.filter((s) => s !== value) : [...prev, value]
     );
     setPage(1);
   }
 
   function applyFilters() {
     setFilterDrawerOpen(false);
-    loadProducts();
-  }
-
-  if (error && !filters) {
-    return (
-      <div className="container mx-auto px-4 py-8">
-        <div className="text-center">
-          <p className="text-red-600">Ошибка: {error}</p>
-          <button
-            onClick={() => window.location.reload()}
-            className="mt-4 px-4 py-2 bg-black text-white rounded"
-          >
-            Повторить
-          </button>
-        </div>
-      </div>
-    );
+    setPage(1);
+    // loadProducts will run because deps changed
   }
 
   return (
-    <div className="container mx-auto px-12 py-20">
-      {/* Header with Filter Button */}
+    <div className="container mx-auto px-12 py-5">
+      {/* Header */}
       <div className="flex items-center justify-between mb-8">
         <h1 className="text-3xl font-bold">Каталог</h1>
-        
+
         <button
           onClick={() => setFilterDrawerOpen(true)}
           className="flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50"
@@ -242,7 +259,7 @@ export default function ProductsPage() {
         </button>
       </div>
 
-      {/* Filter Drawer */}
+      {/* Drawer */}
       <FilterDrawer
         open={filterDrawerOpen}
         onClose={() => setFilterDrawerOpen(false)}
@@ -261,9 +278,11 @@ export default function ProductsPage() {
         onSearchChange={setSearchQuery}
         onClearFilters={clearFilters}
         onApplyFilters={applyFilters}
+        onSale={onSale}
+        onToggleOnSale={setOnSale}
       />
 
-      {/* Products Grid */}
+      {/* Products */}
       <main>
         {loading && page === 1 ? (
           <div className="flex justify-center items-center h-64">
@@ -287,16 +306,14 @@ export default function ProductsPage() {
           <>
             <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2">
               {products.map((product) => {
-                // Get primary image or first image
                 const primaryImage = product.images?.find((img) => img.is_primary);
                 const image = primaryImage || product.images?.[0];
 
-                // Parse and format prices properly
                 const basePrice = product.base_price ? parseFloat(product.base_price) : 0;
                 const salePrice = product.sale_price ? parseFloat(product.sale_price) : null;
 
-                // Determine which price to show
-                const displayPrice = salePrice && salePrice < basePrice ? salePrice : basePrice;
+                const displayPrice =
+                  salePrice && salePrice < basePrice ? salePrice : basePrice;
                 const hasDiscount = salePrice && salePrice < basePrice;
 
                 return (
@@ -307,18 +324,19 @@ export default function ProductsPage() {
                     imageAlt={image?.alt_text || product.name}
                     title={product.name}
                     priceFormatted={`${displayPrice.toFixed(0)} сом`}
-                    compareAtFormatted={hasDiscount ? `${basePrice.toFixed(0)} сом` : undefined}
+                    compareAtFormatted={
+                      hasDiscount ? `${basePrice.toFixed(0)} сом` : undefined
+                    }
                     className="w-full"
                   />
                 );
               })}
             </div>
 
-            {/* Load More */}
             {hasMore && (
               <div className="mt-8 text-center">
                 <button
-                  onClick={() => setPage(p => p + 1)}
+                  onClick={() => setPage((p) => p + 1)}
                   disabled={loading}
                   className="px-6 py-3 bg-black text-white rounded-lg disabled:opacity-50"
                 >
@@ -333,7 +351,7 @@ export default function ProductsPage() {
   );
 }
 
-/* ===================== Filter Drawer Component ===================== */
+/* ===================== Filter Drawer ===================== */
 
 function FilterDrawer({
   open,
@@ -353,6 +371,8 @@ function FilterDrawer({
   onSearchChange,
   onClearFilters,
   onApplyFilters,
+  onSale,
+  onToggleOnSale,
 }: {
   open: boolean;
   onClose: () => void;
@@ -371,6 +391,8 @@ function FilterDrawer({
   onSearchChange: (query: string) => void;
   onClearFilters: () => void;
   onApplyFilters: () => void;
+  onSale: boolean;
+  onToggleOnSale: (v: boolean) => void;
 }) {
   return (
     <>
@@ -400,7 +422,7 @@ function FilterDrawer({
           </button>
         </div>
 
-        {/* Scrollable Content */}
+        {/* Content */}
         <div className="overflow-y-auto h-[calc(100vh-140px)] p-4 space-y-6">
           {/* Search */}
           <div>
@@ -411,6 +433,19 @@ function FilterDrawer({
               onChange={(e) => onSearchChange(e.target.value)}
               className="w-full px-3 py-2 border rounded-lg"
             />
+          </div>
+
+          {/* On sale */}
+          <div>
+            <label className="flex items-center gap-2 cursor-pointer">
+              <input
+                type="checkbox"
+                checked={onSale}
+                onChange={(e) => onToggleOnSale(e.target.checked)}
+                className="w-4 h-4"
+              />
+              <span className="text-sm">Только со скидкой</span>
+            </label>
           </div>
 
           {/* Categories */}
@@ -497,7 +532,7 @@ function FilterDrawer({
             </div>
           )}
 
-          {/* Price Range */}
+          {/* Price range */}
           {filters?.price_range && (
             <div>
               <h3 className="font-medium mb-3">Цена</h3>
@@ -506,7 +541,9 @@ function FilterDrawer({
                   <input
                     type="number"
                     value={priceRange[0]}
-                    onChange={(e) => onPriceRangeChange([Number(e.target.value), priceRange[1]])}
+                    onChange={(e) =>
+                      onPriceRangeChange([Number(e.target.value), priceRange[1]])
+                    }
                     className="w-full px-3 py-2 border rounded"
                     placeholder="От"
                   />
@@ -514,7 +551,9 @@ function FilterDrawer({
                   <input
                     type="number"
                     value={priceRange[1]}
-                    onChange={(e) => onPriceRangeChange([priceRange[0], Number(e.target.value)])}
+                    onChange={(e) =>
+                      onPriceRangeChange([priceRange[0], Number(e.target.value)])
+                    }
                     className="w-full px-3 py-2 border rounded"
                     placeholder="До"
                   />
@@ -524,7 +563,7 @@ function FilterDrawer({
           )}
         </div>
 
-        {/* Footer Buttons */}
+        {/* Footer */}
         <div className="absolute bottom-0 left-0 right-0 border-t bg-white p-4 space-y-2">
           <button
             onClick={onClearFilters}

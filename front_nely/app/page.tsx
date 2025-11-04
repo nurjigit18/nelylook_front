@@ -88,16 +88,16 @@ export default function HomePage() {
             imageSrc: '/banners/carousel1.jpg',
             title: 'Элегантность вечера',
             blurb:
-              'Electrify your run with the most responsive Pegasus ever. Now available in new colourways.',
-            ctaLabel: 'Shop',
+              'Насладись красотой наших товаров в изысканной форме.',
+            ctaLabel: 'Перейти',
             ctaHref: '/collections/pegasus',
           },
           {
             id: 2,
-            imageSrc: '/banners/carousel1.jpg',
-            title: 'Любовь к нежности',
-            blurb: 'Lightweight, flexible, and ready to move with you.',
-            ctaLabel: 'Explore',
+            imageSrc: '/DSC05068.jpg',
+            title: 'Любовь к свободе',
+            blurb: 'Легкий, гибкий, и готовый к движению.',
+            ctaLabel: 'Узнать больше',
             ctaHref: '/collections/flyknit',
           },
         ]}

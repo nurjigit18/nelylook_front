@@ -29,19 +29,19 @@ interface Size {
 interface Product {
   id: number;
   name: string;
-  base_price: string;
-  sale_price?: string;
-  rating: number;
   slug: string;
+  base_price: string;
+  sale_price?: string | null;
   description: string;
   short_description?: string;
   available_colors: Color[];
   available_sizes: Size[];
   images: ProductImage[];
-  category_name: string;
-  season_display: string;
+  category_name?: string;
+  season_display?: string;
   is_featured: boolean;
   is_new_arrival: boolean;
+  rating?: number;  // Make rating optional
 }
 
 interface RelatedProduct {
@@ -133,7 +133,7 @@ export default function ProductDetailPage({
             Home
           </Link>
           <span>/</span>
-          <Link href="/catalog" className="hover:text-black">
+          <Link href="/catalog/products" className="hover:text-black">
             Shop
           </Link>
           <span>/</span>
