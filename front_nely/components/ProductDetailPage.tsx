@@ -1,6 +1,6 @@
 'use client';
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';  // ✅ Add useEffect here
 import Image from 'next/image';
 import Link from 'next/link';
 import { Heart, ChevronLeft } from 'lucide-react';
@@ -41,7 +41,7 @@ interface Product {
   season_display?: string;
   is_featured: boolean;
   is_new_arrival: boolean;
-  rating?: number;  // Make rating optional
+  rating?: number;
 }
 
 interface RelatedProduct {
@@ -60,6 +60,7 @@ interface ProductDetailPageProps {
   product: Product;
   relatedProducts?: RelatedProduct[];
   whatsappNumber?: string;
+  initialColorId?: number | null;  // ✅ Add this prop
 }
 
 // Helper function to clean image URLs
@@ -71,10 +72,16 @@ const cleanImageUrl = (url: string | null | undefined): string => {
 export default function ProductDetailPage({ 
   product, 
   relatedProducts = [],
-  whatsappNumber = '+996700123456' 
+  whatsappNumber = '+996700123456',
+  initialColorId = null  // ✅ Add this parameter
 }: ProductDetailPageProps) {
+  // ✅ Find the initial color based on URL parameter
+  const initialColor = initialColorId 
+    ? product.available_colors.find(c => c.id === initialColorId)
+    : product.available_colors[0];
+
   const [selectedColor, setSelectedColor] = useState<Color | null>(
-    product.available_colors[0] || null
+    initialColor || null  // ✅ Use initialColor instead of direct array access
   );
   const [selectedSize, setSelectedSize] = useState<Size | null>(
     product.available_sizes[0] || null
@@ -85,6 +92,36 @@ export default function ProductDetailPage({
   );
   const [isWishlisted, setIsWishlisted] = useState(false);
   const [expandedSection, setExpandedSection] = useState<string | null>('description');
+
+  // ✅ Add useEffect to update main image when color changes
+  useEffect(() => {
+    if (selectedColor) {
+      const colorImage = product.images.find(
+        img => img.color_id === selectedColor.id && img.is_primary
+      ) || product.images.find(
+        img => img.color_id === selectedColor.id
+      );
+      
+      if (colorImage) {
+        setMainImage(colorImage);
+      }
+    }
+  }, [selectedColor, product.images]);
+
+  // ✅ Update images when color is selected from URL on mount
+  useEffect(() => {
+    if (initialColorId && selectedColor) {
+      const colorImage = product.images.find(
+        img => img.color_id === selectedColor.id && img.is_primary
+      ) || product.images.find(
+        img => img.color_id === selectedColor.id
+      );
+      
+      if (colorImage) {
+        setMainImage(colorImage);
+      }
+    }
+  }, [initialColorId]); // Only run on mount
 
   // Filter images by selected color
   const colorImages = product.images.filter(
@@ -199,12 +236,14 @@ export default function ProductDetailPage({
           <div className="flex flex-col">
             {/* Title & Rating */}
             <h1 className="text-3xl font-semibold tracking-tight">{product.name}</h1>
-            <div className="mt-2 flex items-center gap-2">
-              <div className="flex items-center">
-                <span className="text-lg font-medium">{product.rating}</span>
-                <span className="ml-1 text-yellow-500">★</span>
+            {product.rating && (
+              <div className="mt-2 flex items-center gap-2">
+                <div className="flex items-center">
+                  <span className="text-lg font-medium">{product.rating}</span>
+                  <span className="ml-1 text-yellow-500">★</span>
+                </div>
               </div>
-            </div>
+            )}
 
             {/* Price */}
             <div className="mt-4 flex items-center gap-3">
@@ -379,7 +418,7 @@ export default function ProductDetailPage({
           <div className="mt-16 border-t pt-16">
             <div className="mb-8 flex items-center justify-between">
               <h2 className="text-2xl font-semibold">Похожие товары</h2>
-              <Link href="/catalog" className="text-sm underline hover:text-neutral-600">
+              <Link href="/catalog/products" className="text-sm underline hover:text-neutral-600">
                 Смотреть все
               </Link>
             </div>

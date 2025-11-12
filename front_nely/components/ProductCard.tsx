@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import NextLink from 'next/link';
 import { Heart } from 'lucide-react';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
 export type ProductCardProps = {
   href: string;
@@ -15,6 +15,11 @@ export type ProductCardProps = {
   compareAtFormatted?: string;  // e.g. "$49.99"
   /** kept for backward-compat but unused now */
   rating?: number;
+  
+  // NEW: Required for wishlist functionality
+  productId?: number;           // Product ID for API calls
+  variantId?: number;           // Default variant ID (if known)
+  
   initiallyWishlisted?: boolean;
   onToggleWishlist?: (next: boolean) => void;
 
@@ -30,17 +35,111 @@ export default function ProductCard({
   sizeLabel,
   priceFormatted,
   compareAtFormatted,
+  productId,
+  variantId,
   initiallyWishlisted = false,
   onToggleWishlist,
   className = 'w-[200px] sm:w-[230px] md:w-[260px] lg:w-[280px]',
   priority = false,
 }: ProductCardProps) {
   const [wishlisted, setWishlisted] = useState(initiallyWishlisted);
+  const [loading, setLoading] = useState(false);
+  const [defaultVariantId, setDefaultVariantId] = useState<number | null>(variantId || null);
 
-  function toggleWishlist() {
-    const next = !wishlisted;
-    setWishlisted(next);
-    onToggleWishlist?.(next);
+  // Check wishlist status on mount if we have a variant ID
+  useEffect(() => {
+    if (defaultVariantId) {
+      checkWishlistStatus(defaultVariantId);
+    } else if (productId) {
+      // If no variant ID provided, fetch the first variant
+      fetchDefaultVariant();
+    }
+  }, [defaultVariantId, productId]);
+
+  async function fetchDefaultVariant() {
+    if (!productId) return;
+    
+    try {
+      const res = await fetch(`/api/catalog/products/${productId}/variants`);
+      if (res.ok) {
+        const data = await res.json();
+        if (data.results && data.results.length > 0) {
+          const firstVariantId = data.results[0].id;
+          setDefaultVariantId(firstVariantId);
+        }
+      }
+    } catch (error) {
+      console.error('Error fetching default variant:', error);
+    }
+  }
+
+  async function checkWishlistStatus(vId: number) {
+    try {
+      const res = await fetch(`/api/wishlist/exists?variant=${vId}`);
+      if (res.ok) {
+        const data = await res.json();
+        setWishlisted(data.exists || false);
+      }
+    } catch (error) {
+      console.error('Error checking wishlist status:', error);
+    }
+  }
+
+  async function toggleWishlist(e: React.MouseEvent) {
+    e.preventDefault(); // Prevent navigation to product page
+    e.stopPropagation();
+
+    if (!defaultVariantId) {
+      console.warn('No variant ID available for wishlist operation');
+      alert('Не удалось добавить в избранное. Попробуйте позже.');
+      return;
+    }
+
+    setLoading(true);
+
+    try {
+      if (wishlisted) {
+        // Remove from wishlist
+        const res = await fetch(`/api/wishlist/by-variant/${defaultVariantId}`, {
+          method: 'DELETE',
+        });
+
+        if (res.ok || res.status === 204) {
+          setWishlisted(false);
+          onToggleWishlist?.(false);
+          
+          // Trigger a custom event to update header count
+          window.dispatchEvent(new CustomEvent('wishlistUpdated'));
+        } else {
+          throw new Error('Failed to remove from wishlist');
+        }
+      } else {
+        // Add to wishlist
+        const res = await fetch('/api/wishlist', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify({ variant: defaultVariantId }),
+        });
+
+        if (res.ok) {
+          setWishlisted(true);
+          onToggleWishlist?.(true);
+          
+          // Trigger a custom event to update header count
+          window.dispatchEvent(new CustomEvent('wishlistUpdated'));
+        } else {
+          const errorData = await res.json().catch(() => ({}));
+          throw new Error(errorData.detail || 'Failed to add to wishlist');
+        }
+      }
+    } catch (error: any) {
+      console.error('Error toggling wishlist:', error);
+      alert(error.message || 'Ошибка при обновлении избранного');
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
@@ -62,10 +161,15 @@ export default function ProductCard({
         <button
           type="button"
           onClick={toggleWishlist}
+          disabled={loading || !defaultVariantId}
           aria-label={wishlisted ? 'Remove from wishlist' : 'Add to wishlist'}
-          className="absolute right-2.5 top-2.5 z-10 rounded-full bg-white/90 p-1.5 shadow hover:bg-white"
+          className="absolute right-2.5 top-2.5 z-10 rounded-full bg-white/90 p-1.5 shadow hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed"
         >
-          <Heart className="h-4 w-4" fill={wishlisted ? 'currentColor' : 'transparent'} />
+          <Heart 
+            className="h-4 w-4 transition-colors" 
+            fill={wishlisted ? '#ef4444' : 'transparent'} 
+            color={wishlisted ? '#ef4444' : 'currentColor'}
+          />
         </button>
       </div>
 

@@ -1,12 +1,17 @@
 {
   "/(auth)/login/page": "app/(auth)/login/page.js",
   "/_not-found/page": "app/_not-found/page.js",
-  "/api/auth/login/route": "app/api/auth/login/route.js",
   "/api/auth/me/route": "app/api/auth/me/route.js",
   "/api/catalog/categories/route": "app/api/catalog/categories/route.js",
+  "/api/catalog/products/by-color/route": "app/api/catalog/products/by-color/route.js",
   "/api/catalog/products/filters/route": "app/api/catalog/products/filters/route.js",
   "/api/catalog/products/route": "app/api/catalog/products/route.js",
+  "/api/wishlist/[id]/route": "app/api/wishlist/[id]/route.js",
+  "/api/wishlist/route": "app/api/wishlist/route.js",
   "/catalog/[category_slug]/page": "app/catalog/[category_slug]/page.js",
+  "/catalog/products/[slug]/page": "app/catalog/products/[slug]/page.js",
   "/catalog/products/page": "app/catalog/products/page.js",
-  "/page": "app/page.js"
+  "/contact/page": "app/contact/page.js",
+  "/page": "app/page.js",
+  "/wishlist/page": "app/wishlist/page.js"
 }

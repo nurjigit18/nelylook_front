@@ -164,6 +164,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/wishlist/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/wishlist">> = Specific
+  const handler = {} as typeof import("../../../app/wishlist/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/api/auth/change-password/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/auth/change-password">> = Specific
@@ -263,6 +272,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../app/api/catalog/products/by-color/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/catalog/products/by-color">> = Specific
+  const handler = {} as typeof import("../../../app/api/catalog/products/by-color/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../app/api/catalog/products/filters/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/catalog/products/filters">> = Specific
@@ -285,6 +303,51 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/catalog/products">> = Specific
   const handler = {} as typeof import("../../../app/api/catalog/products/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/wishlist/[id]/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/wishlist/[id]">> = Specific
+  const handler = {} as typeof import("../../../app/api/wishlist/[id]/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/wishlist/by-variant/[variantId]/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/wishlist/by-variant/[variantId]">> = Specific
+  const handler = {} as typeof import("../../../app/api/wishlist/by-variant/[variantId]/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/wishlist/count/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/wishlist/count">> = Specific
+  const handler = {} as typeof import("../../../app/api/wishlist/count/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/wishlist/exists/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/wishlist/exists">> = Specific
+  const handler = {} as typeof import("../../../app/api/wishlist/exists/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../app/api/wishlist/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/wishlist">> = Specific
+  const handler = {} as typeof import("../../../app/api/wishlist/route.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

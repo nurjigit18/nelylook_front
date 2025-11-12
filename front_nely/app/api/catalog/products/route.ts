@@ -10,9 +10,18 @@ export async function GET(request: NextRequest) {
     // Build query string for Django backend
     const params = new URLSearchParams();
     
-    // Forward all query parameters
+    // Transform parameters to match Django filter expectations
     searchParams.forEach((value, key) => {
-      params.append(key, value);
+      // Transform plural to singular for Django filters
+      if (key === 'colors') {
+        params.append('color', value);
+      } else if (key === 'sizes') {
+        params.append('size', value);
+      } else if (key === 'categories') {
+        params.append('category', value);
+      } else {
+        params.append(key, value);
+      }
     });
     
     console.log('📡 Fetching products from Django:', `${BACKEND_URL}/catalog/products/?${params.toString()}`);
@@ -36,22 +45,10 @@ export async function GET(request: NextRequest) {
     const data = await res.json();
     console.log('✅ Products fetched from Django');
     
-    // Your CustomPagination returns:
-    // {
-    //   status: 'success',
-    //   message: 'Paginated results',
-    //   data: { count, next, previous, results }
-    // }
-    // 
-    // Return the inner 'data' object directly so frontend gets:
-    // { count, next, previous, results }
-    
     if (data.data) {
-      // Wrapped response - extract the data
       return NextResponse.json(data.data);
     }
     
-    // Fallback: return as-is if not wrapped
     return NextResponse.json(data);
   } catch (error) {
     console.error('❌ Error fetching products:', error);

@@ -57,9 +57,18 @@ async function GET(request) {
         const searchParams = request.nextUrl.searchParams;
         // Build query string for Django backend
         const params = new URLSearchParams();
-        // Forward all query parameters
+        // Transform parameters to match Django filter expectations
         searchParams.forEach((value, key)=>{
-            params.append(key, value);
+            // Transform plural to singular for Django filters
+            if (key === 'colors') {
+                params.append('color', value);
+            } else if (key === 'sizes') {
+                params.append('size', value);
+            } else if (key === 'categories') {
+                params.append('category', value);
+            } else {
+                params.append(key, value);
+            }
         });
         console.log('📡 Fetching products from Django:', `${BACKEND_URL}/catalog/products/?${params.toString()}`);
         const res = await fetch(`${BACKEND_URL}/catalog/products/?${params.toString()}`, {
@@ -81,20 +90,9 @@ async function GET(request) {
         }
         const data = await res.json();
         console.log('✅ Products fetched from Django');
-        // Your CustomPagination returns:
-        // {
-        //   status: 'success',
-        //   message: 'Paginated results',
-        //   data: { count, next, previous, results }
-        // }
-        // 
-        // Return the inner 'data' object directly so frontend gets:
-        // { count, next, previous, results }
         if (data.data) {
-            // Wrapped response - extract the data
             return __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(data.data);
         }
-        // Fallback: return as-is if not wrapped
         return __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$server$2e$js__$5b$app$2d$route$5d$__$28$ecmascript$29$__["NextResponse"].json(data);
     } catch (error) {
         console.error('❌ Error fetching products:', error);

@@ -4,6 +4,7 @@ import ProductDetailPage from '@/components/ProductDetailPage';
 
 type Props = {
   params: Promise<{ slug: string }>;
+  searchParams: Promise<{ color?: string }>;
 };
 
 async function getProduct(slug: string) {
@@ -108,10 +109,12 @@ async function getRelatedProducts(productId: number) {
   }
 }
 
-export default async function ProductPage({ params }: Props) {
+export default async function ProductPage({ params, searchParams }: Props) {
   const { slug } = await params;
+  const { color: colorParam } = await searchParams;
   
   console.log('🎯 ProductPage rendering for slug:', slug);
+  console.log('🎨 Color parameter:', colorParam);
   
   const product = await getProduct(slug);
   
@@ -126,6 +129,10 @@ export default async function ProductPage({ params }: Props) {
   const productId = product.id || product.product_id;
   
   const relatedProducts = await getRelatedProducts(productId);
+  
+  // Parse color ID from search params
+  const selectedColorId = colorParam ? parseInt(colorParam) : null;
+  console.log('🎨 Selected color ID:', selectedColorId);
   
   // Transform related products to match ProductCard interface
   const transformedRelated = relatedProducts.map((p: any) => {
@@ -174,6 +181,7 @@ export default async function ProductPage({ params }: Props) {
     colorsCount: normalizedProduct.available_colors.length,
     sizesCount: normalizedProduct.available_sizes.length,
     relatedCount: transformedRelated.length,
+    selectedColorId,
   });
   
   return (
@@ -181,6 +189,7 @@ export default async function ProductPage({ params }: Props) {
       product={normalizedProduct}
       relatedProducts={transformedRelated}
       whatsappNumber="+996700123456"
+      initialColorId={selectedColorId}
     />
   );
 }

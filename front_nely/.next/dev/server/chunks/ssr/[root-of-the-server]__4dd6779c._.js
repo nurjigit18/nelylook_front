@@ -148,9 +148,11 @@ async function getRelatedProducts(productId) {
         return [];
     }
 }
-async function ProductPage({ params }) {
+async function ProductPage({ params, searchParams }) {
     const { slug } = await params;
+    const { color: colorParam } = await searchParams;
     console.log('🎯 ProductPage rendering for slug:', slug);
+    console.log('🎨 Color parameter:', colorParam);
     const product = await getProduct(slug);
     if (!product) {
         console.log('❌ Product not found, returning 404');
@@ -160,6 +162,9 @@ async function ProductPage({ params }) {
     // Get the product ID (handle both formats)
     const productId = product.id || product.product_id;
     const relatedProducts = await getRelatedProducts(productId);
+    // Parse color ID from search params
+    const selectedColorId = colorParam ? parseInt(colorParam) : null;
+    console.log('🎨 Selected color ID:', selectedColorId);
     // Transform related products to match ProductCard interface
     const transformedRelated = relatedProducts.map((p)=>{
         const productName = p.name || p.product_name;
@@ -203,15 +208,17 @@ async function ProductPage({ params }) {
         imagesCount: normalizedProduct.images.length,
         colorsCount: normalizedProduct.available_colors.length,
         sizesCount: normalizedProduct.available_sizes.length,
-        relatedCount: transformedRelated.length
+        relatedCount: transformedRelated.length,
+        selectedColorId
     });
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$rsc$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$components$2f$ProductDetailPage$2e$tsx__$5b$app$2d$rsc$5d$__$28$ecmascript$29$__["default"], {
         product: normalizedProduct,
         relatedProducts: transformedRelated,
-        whatsappNumber: "+996700123456"
+        whatsappNumber: "+996700123456",
+        initialColorId: selectedColorId
     }, void 0, false, {
         fileName: "[project]/front_nely/app/catalog/products/[slug]/page.tsx",
-        lineNumber: 180,
+        lineNumber: 188,
         columnNumber: 5
     }, this);
 }

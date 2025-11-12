@@ -1,6 +1,6 @@
 'use client';
 
-import { Search, User, ShoppingBag, Menu, X } from 'lucide-react';
+import { Search, User, ShoppingBag, Menu, X, Heart } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import Image from 'next/image';
 import NextLink from 'next/link';
@@ -23,6 +23,7 @@ export default function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [cartOpen, setCartOpen] = useState(false);
   const [cartCount, setCartCount] = useState(2);
+  const [wishlistCount, setWishlistCount] = useState(0); // NEW: Wishlist count
 
   // search UI
   const [isSearchExpanded, setIsSearchExpanded] = useState(false);
@@ -54,6 +55,33 @@ export default function Header() {
     const total = cartItems.reduce((s, i) => s + i.qty, 0);
     setCartCount(total);
   }, [cartItems]);
+
+  useEffect(() => {
+    loadWishlistCount();
+    
+    // Listen for wishlist updates from ProductCard
+    const handleWishlistUpdate = () => {
+      loadWishlistCount();
+    };
+    
+    window.addEventListener('wishlistUpdated', handleWishlistUpdate);
+    
+    return () => {
+      window.removeEventListener('wishlistUpdated', handleWishlistUpdate);
+    };
+  }, []);
+  
+  async function loadWishlistCount() {
+    try {
+      const res = await fetch('/api/wishlist/count');
+      if (res.ok) {
+        const data = await res.json();
+        setWishlistCount(data.count || 0);
+      }
+    } catch (error) {
+      console.error('Error loading wishlist count:', error);
+    }
+  }
 
   useEffect(() => {
     console.log('🚀 Starting category fetch...');
@@ -322,6 +350,22 @@ export default function Header() {
               </button>
             </div>
 
+            {/* NEW: Wishlist */}
+            <button
+              onClick={() => router.push('/wishlist')}
+              className="group relative p-2 rounded-full transition-all duration-200 cursor-pointer
+                         hover:bg-gray-100 hover:shadow-sm hover:-translate-y-[1px] active:scale-95"
+              aria-label="Wishlist"
+              title="Избранное"
+            >
+              <Heart className="w-5 h-5 transition-transform duration-200 group-hover:scale-110" />
+              {wishlistCount > 0 && (
+                <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs flex items-center justify-center rounded-full">
+                  {wishlistCount}
+                </span>
+              )}
+            </button>
+
             {/* Account */}
             <button
               onClick={handleUserClick}
@@ -367,6 +411,20 @@ export default function Header() {
                 {link.name}
               </NextLink>
             ))}
+            {/* NEW: Wishlist in mobile menu */}
+            <NextLink
+              href="/wishlist"
+              className="flex items-center gap-2 text-base font-medium text-gray-700 hover:text-black transition-colors py-2 cursor-pointer"
+              onClick={() => setIsMenuOpen(false)}
+            >
+              <Heart className="w-5 h-5" />
+              Избранное
+              {wishlistCount > 0 && (
+                <span className="ml-auto bg-red-500 text-white text-xs px-2 py-0.5 rounded-full">
+                  {wishlistCount}
+                </span>
+              )}
+            </NextLink>
           </nav>
         </div>
       )}

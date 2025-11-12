@@ -586,13 +586,101 @@ var _s = __turbopack_context__.k.signature();
 ;
 ;
 ;
-function ProductCard({ href, imageSrc, imageAlt, title, sizeLabel, priceFormatted, compareAtFormatted, initiallyWishlisted = false, onToggleWishlist, className = 'w-[200px] sm:w-[230px] md:w-[260px] lg:w-[280px]', priority = false }) {
+function ProductCard({ href, imageSrc, imageAlt, title, sizeLabel, priceFormatted, compareAtFormatted, productId, variantId, initiallyWishlisted = false, onToggleWishlist, className = 'w-[200px] sm:w-[230px] md:w-[260px] lg:w-[280px]', priority = false }) {
     _s();
     const [wishlisted, setWishlisted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(initiallyWishlisted);
-    function toggleWishlist() {
-        const next = !wishlisted;
-        setWishlisted(next);
-        onToggleWishlist?.(next);
+    const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
+    const [defaultVariantId, setDefaultVariantId] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(variantId || null);
+    // Check wishlist status on mount if we have a variant ID
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ProductCard.useEffect": ()=>{
+            if (defaultVariantId) {
+                checkWishlistStatus(defaultVariantId);
+            } else if (productId) {
+                // If no variant ID provided, fetch the first variant
+                fetchDefaultVariant();
+            }
+        }
+    }["ProductCard.useEffect"], [
+        defaultVariantId,
+        productId
+    ]);
+    async function fetchDefaultVariant() {
+        if (!productId) return;
+        try {
+            const res = await fetch(`/api/catalog/products/${productId}/variants`);
+            if (res.ok) {
+                const data = await res.json();
+                if (data.results && data.results.length > 0) {
+                    const firstVariantId = data.results[0].id;
+                    setDefaultVariantId(firstVariantId);
+                }
+            }
+        } catch (error) {
+            console.error('Error fetching default variant:', error);
+        }
+    }
+    async function checkWishlistStatus(vId) {
+        try {
+            const res = await fetch(`/api/wishlist/exists?variant=${vId}`);
+            if (res.ok) {
+                const data = await res.json();
+                setWishlisted(data.exists || false);
+            }
+        } catch (error) {
+            console.error('Error checking wishlist status:', error);
+        }
+    }
+    async function toggleWishlist(e) {
+        e.preventDefault(); // Prevent navigation to product page
+        e.stopPropagation();
+        if (!defaultVariantId) {
+            console.warn('No variant ID available for wishlist operation');
+            alert('Не удалось добавить в избранное. Попробуйте позже.');
+            return;
+        }
+        setLoading(true);
+        try {
+            if (wishlisted) {
+                // Remove from wishlist
+                const res = await fetch(`/api/wishlist/by-variant/${defaultVariantId}`, {
+                    method: 'DELETE'
+                });
+                if (res.ok || res.status === 204) {
+                    setWishlisted(false);
+                    onToggleWishlist?.(false);
+                    // Trigger a custom event to update header count
+                    window.dispatchEvent(new CustomEvent('wishlistUpdated'));
+                } else {
+                    throw new Error('Failed to remove from wishlist');
+                }
+            } else {
+                // Add to wishlist
+                const res = await fetch('/api/wishlist', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    body: JSON.stringify({
+                        variant: defaultVariantId
+                    })
+                });
+                if (res.ok) {
+                    setWishlisted(true);
+                    onToggleWishlist?.(true);
+                    // Trigger a custom event to update header count
+                    window.dispatchEvent(new CustomEvent('wishlistUpdated'));
+                } else {
+                    const errorData = await res.json().catch(()=>({}));
+                    throw new Error(errorData.detail || 'Failed to add to wishlist');
+                }
+            }
+        } catch (error) {
+            console.error('Error toggling wishlist:', error);
+            alert(error.message || 'Ошибка при обновлении избранного');
+        } finally{
+            setLoading(false);
+        }
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
         className: `group ${className}`,
@@ -612,36 +700,38 @@ function ProductCard({ href, imageSrc, imageAlt, title, sizeLabel, priceFormatte
                             sizes: "(min-width:1536px) 280px, (min-width:1280px) 260px, (min-width:1024px) 240px, (min-width:768px) 230px, 200px"
                         }, void 0, false, {
                             fileName: "[project]/front_nely/components/ProductCard.tsx",
-                            lineNumber: 51,
+                            lineNumber: 150,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/front_nely/components/ProductCard.tsx",
-                        lineNumber: 50,
+                        lineNumber: 149,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         type: "button",
                         onClick: toggleWishlist,
+                        disabled: loading || !defaultVariantId,
                         "aria-label": wishlisted ? 'Remove from wishlist' : 'Add to wishlist',
-                        className: "absolute right-2.5 top-2.5 z-10 rounded-full bg-white/90 p-1.5 shadow hover:bg-white",
+                        className: "absolute right-2.5 top-2.5 z-10 rounded-full bg-white/90 p-1.5 shadow hover:bg-white transition-all disabled:opacity-50 disabled:cursor-not-allowed",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Heart$3e$__["Heart"], {
-                            className: "h-4 w-4",
-                            fill: wishlisted ? 'currentColor' : 'transparent'
+                            className: "h-4 w-4 transition-colors",
+                            fill: wishlisted ? '#ef4444' : 'transparent',
+                            color: wishlisted ? '#ef4444' : 'currentColor'
                         }, void 0, false, {
                             fileName: "[project]/front_nely/components/ProductCard.tsx",
-                            lineNumber: 68,
+                            lineNumber: 168,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/front_nely/components/ProductCard.tsx",
-                        lineNumber: 62,
+                        lineNumber: 161,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/front_nely/components/ProductCard.tsx",
-                lineNumber: 49,
+                lineNumber: 148,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -655,7 +745,7 @@ function ProductCard({ href, imageSrc, imageAlt, title, sizeLabel, priceFormatte
                                 children: priceFormatted
                             }, void 0, false, {
                                 fileName: "[project]/front_nely/components/ProductCard.tsx",
-                                lineNumber: 76,
+                                lineNumber: 180,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -663,13 +753,13 @@ function ProductCard({ href, imageSrc, imageAlt, title, sizeLabel, priceFormatte
                                 children: "с̲"
                             }, void 0, false, {
                                 fileName: "[project]/front_nely/components/ProductCard.tsx",
-                                lineNumber: 77,
+                                lineNumber: 181,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/front_nely/components/ProductCard.tsx",
-                        lineNumber: 75,
+                        lineNumber: 179,
                         columnNumber: 9
                     }, this),
                     compareAtFormatted && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -679,20 +769,20 @@ function ProductCard({ href, imageSrc, imageAlt, title, sizeLabel, priceFormatte
                                 children: compareAtFormatted
                             }, void 0, false, {
                                 fileName: "[project]/front_nely/components/ProductCard.tsx",
-                                lineNumber: 83,
+                                lineNumber: 187,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 children: "с̲"
                             }, void 0, false, {
                                 fileName: "[project]/front_nely/components/ProductCard.tsx",
-                                lineNumber: 84,
+                                lineNumber: 188,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/front_nely/components/ProductCard.tsx",
-                        lineNumber: 82,
+                        lineNumber: 186,
                         columnNumber: 11
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -703,28 +793,28 @@ function ProductCard({ href, imageSrc, imageAlt, title, sizeLabel, priceFormatte
                             children: title
                         }, void 0, false, {
                             fileName: "[project]/front_nely/components/ProductCard.tsx",
-                            lineNumber: 90,
+                            lineNumber: 194,
                             columnNumber: 11
                         }, this)
                     }, void 0, false, {
                         fileName: "[project]/front_nely/components/ProductCard.tsx",
-                        lineNumber: 89,
+                        lineNumber: 193,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/front_nely/components/ProductCard.tsx",
-                lineNumber: 73,
+                lineNumber: 177,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/front_nely/components/ProductCard.tsx",
-        lineNumber: 47,
+        lineNumber: 146,
         columnNumber: 5
     }, this);
 }
-_s(ProductCard, "stjTEb/ep4MYPjg4TeDnvcE4gT8=");
+_s(ProductCard, "XBMm2czbd56NS5xuvn8lrlcVvPw=");
 _c = ProductCard;
 var _c;
 __turbopack_context__.k.register(_c, "ProductCard");

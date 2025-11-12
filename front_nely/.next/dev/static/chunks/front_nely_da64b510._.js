@@ -167,7 +167,6 @@ if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelper
 "[project]/front_nely/app/catalog/products/page.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
 "use strict";
 
-// app/catalog/page.tsx
 __turbopack_context__.s([
     "default",
     ()=>ProductsPage
@@ -189,13 +188,13 @@ function ProductsPage() {
     _s();
     const router = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"])();
     const searchParams = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"])();
-    // data
-    const [products, setProducts] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
+    // State
+    const [colorVariants, setColorVariants] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [filters, setFilters] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [loading, setLoading] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
     const [error, setError] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
     const [filterDrawerOpen, setFilterDrawerOpen] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    // filter state
+    // Filter state
     const [selectedCategories, setSelectedCategories] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [selectedColors, setSelectedColors] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [selectedSizes, setSelectedSizes] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
@@ -203,38 +202,26 @@ function ProductsPage() {
         0,
         10000
     ]);
+    const [tempPriceRange, setTempPriceRange] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([
+        0,
+        10000
+    ]);
     const [selectedSeasons, setSelectedSeasons] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])([]);
     const [searchQuery, setSearchQuery] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
-    const [onSale, setOnSale] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    const [isNewArrival, setIsNewArrival] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
-    // pagination
+    // Pagination
     const [page, setPage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(1);
     const [hasMore, setHasMore] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(true);
-    // load filters on mount
+    // Load filters on mount
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ProductsPage.useEffect": ()=>{
             loadFilters();
         }
     }["ProductsPage.useEffect"], []);
-    (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
-        "ProductsPage.useEffect": ()=>{
-            const saleParam = searchParams.get('on_sale');
-            const newParam = searchParams.get('new_arrival');
-            if (saleParam === 'true') {
-                setOnSale(true);
-            }
-            if (newParam === 'true') {
-                setIsNewArrival(true);
-            }
-        }
-    }["ProductsPage.useEffect"], [
-        searchParams
-    ]);
-    // load products when filters change
+    // Load products when filters change
     (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
         "ProductsPage.useEffect": ()=>{
             if (filters) {
-                loadProducts();
+                loadColorVariants();
             }
         }
     }["ProductsPage.useEffect"], [
@@ -244,8 +231,6 @@ function ProductsPage() {
         priceRange,
         selectedSeasons,
         searchQuery,
-        onSale,
-        isNewArrival,
         page
     ]);
     async function loadFilters() {
@@ -258,45 +243,52 @@ function ProductsPage() {
                 throw new Error(errorData.detail || 'Failed to load filters');
             }
             const data = await res.json();
+            console.log('✅ Filters loaded:', data);
             setFilters(data);
             if (data.price_range) {
+                const min = Math.floor(data.price_range.min_price || 0);
+                const max = Math.ceil(data.price_range.max_price || 10000);
                 setPriceRange([
-                    data.price_range.min_price || 0,
-                    data.price_range.max_price || 10000
+                    min,
+                    max
+                ]);
+                setTempPriceRange([
+                    min,
+                    max
                 ]);
             }
         } catch (err) {
+            console.error('❌ Error loading filters:', err);
             setError(err.message);
         }
     }
-    async function loadProducts() {
+    async function loadColorVariants() {
         try {
             setLoading(true);
+            // Build query params
             const params = new URLSearchParams();
             if (searchQuery) params.append('search', searchQuery);
-            // IMPORTANT: names must match backend
-            if (selectedCategories.length) {
-                params.append('category', selectedCategories.join(','));
+            if (selectedCategories.length) params.append('category', selectedCategories.join(','));
+            // ✅ FIXED: Send as 'colors' - API route will transform to 'color'
+            if (selectedColors.length) params.append('colors', selectedColors.join(','));
+            // ✅ FIXED: Send as 'sizes' - API route will transform to 'size'
+            if (selectedSizes.length) params.append('sizes', selectedSizes.join(','));
+            if (selectedSeasons.length) params.append('season', selectedSeasons.join(','));
+            // Only add price filters if they differ from the full range
+            if (filters?.price_range) {
+                const fullMin = Math.floor(filters.price_range.min_price || 0);
+                const fullMax = Math.ceil(filters.price_range.max_price || 10000);
+                if (priceRange[0] > fullMin) {
+                    params.append('min_price', priceRange[0].toString());
+                }
+                if (priceRange[1] < fullMax) {
+                    params.append('max_price', priceRange[1].toString());
+                }
             }
-            if (selectedColors.length) {
-                params.append('color', selectedColors.join(','));
-            }
-            if (selectedSizes.length) {
-                params.append('size', selectedSizes.join(','));
-            }
-            if (selectedSeasons.length) {
-                params.append('season', selectedSeasons.join(','));
-            }
-            if (onSale) params.append('on_sale', 'true');
-            if (isNewArrival) params.append('new_arrival', 'true');
-            // price
-            if (priceRange[0] > 0) params.append('min_price', priceRange[0].toString());
-            // you can use filters?.price_range.max_price as upper bound
-            if (priceRange[1] < 1000000) params.append('max_price', priceRange[1].toString());
-            // pagination
             params.append('page', page.toString());
             params.append('page_size', '20');
-            const res = await fetch(`/api/catalog/products?${params.toString()}`);
+            console.log('📡 Loading color variants with params:', params.toString());
+            const res = await fetch(`/api/catalog/products/by-color?${params.toString()}`);
             if (!res.ok) {
                 const errorData = await res.json().catch(()=>({
                         detail: 'Failed to load products'
@@ -304,18 +296,34 @@ function ProductsPage() {
                 throw new Error(errorData.detail || 'Failed to load products');
             }
             const data = await res.json();
-            const productList = data.results || [];
+            console.log('✅ Color variants response:', data);
+            // Handle both paginated and non-paginated responses
+            let variants = [];
+            if (Array.isArray(data)) {
+                // Direct array response
+                variants = data;
+                setHasMore(false);
+            } else if (data.results && Array.isArray(data.results)) {
+                // Paginated response
+                variants = data.results;
+                setHasMore(!!data.next);
+            } else if (data.data && Array.isArray(data.data)) {
+                // Wrapped response
+                variants = data.data;
+                setHasMore(false);
+            }
+            console.log('📦 Variant count:', variants.length);
             if (page === 1) {
-                setProducts(productList);
+                setColorVariants(variants);
             } else {
-                setProducts((prev)=>[
+                setColorVariants((prev)=>[
                         ...prev,
-                        ...productList
+                        ...variants
                     ]);
             }
-            setHasMore(!!data.next);
             setError(null);
         } catch (err) {
+            console.error('❌ Error loading color variants:', err);
             setError(err.message);
         } finally{
             setLoading(false);
@@ -326,12 +334,16 @@ function ProductsPage() {
         setSelectedColors([]);
         setSelectedSizes([]);
         setSelectedSeasons([]);
-        setOnSale(false);
-        setIsNewArrival(false);
         if (filters?.price_range) {
+            const min = Math.floor(filters.price_range.min_price || 0);
+            const max = Math.ceil(filters.price_range.max_price || 10000);
             setPriceRange([
-                filters.price_range.min_price || 0,
-                filters.price_range.max_price || 10000
+                min,
+                max
+            ]);
+            setTempPriceRange([
+                min,
+                max
             ]);
         }
         setSearchQuery('');
@@ -366,47 +378,189 @@ function ProductsPage() {
         setPage(1);
     }
     function applyFilters() {
+        setPriceRange(tempPriceRange);
         setFilterDrawerOpen(false);
         setPage(1);
-    // loadProducts will run because deps changed
+    }
+    if (error && !filters) {
+        return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+            className: "container mx-auto px-4 py-8",
+            children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "text-center",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                        className: "text-red-600",
+                        children: [
+                            "Ошибка: ",
+                            error
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                        lineNumber: 251,
+                        columnNumber: 11
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        onClick: ()=>window.location.reload(),
+                        className: "mt-4 px-4 py-2 bg-black text-white rounded cursor-pointer hover:bg-gray-800 transition-colors",
+                        children: "Повторить"
+                    }, void 0, false, {
+                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                        lineNumber: 252,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                lineNumber: 250,
+                columnNumber: 9
+            }, this)
+        }, void 0, false, {
+            fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+            lineNumber: 249,
+            columnNumber: 7
+        }, this);
     }
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-        className: "container mx-auto px-12 py-5",
+        className: "container mx-auto px-4 py-8",
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                 className: "flex items-center justify-between mb-8",
                 children: [
-                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                        className: "text-3xl font-bold",
-                        children: "Каталог"
-                    }, void 0, false, {
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                className: "text-3xl font-bold",
+                                children: "Каталог"
+                            }, void 0, false, {
+                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                lineNumber: 268,
+                                columnNumber: 11
+                            }, this),
+                            colorVariants.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-sm text-gray-600 mt-1",
+                                children: [
+                                    "Найдено ",
+                                    colorVariants.length,
+                                    " вариантов товаров"
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                lineNumber: 270,
+                                columnNumber: 13
+                            }, this)
+                        ]
+                    }, void 0, true, {
                         fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                        lineNumber: 251,
+                        lineNumber: 267,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                         onClick: ()=>setFilterDrawerOpen(true),
-                        className: "flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50",
+                        className: "flex items-center gap-2 px-4 py-2 border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$sliders$2d$horizontal$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__SlidersHorizontal$3e$__["SlidersHorizontal"], {
                                 className: "w-4 h-4"
                             }, void 0, false, {
                                 fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                lineNumber: 257,
+                                lineNumber: 280,
                                 columnNumber: 11
                             }, this),
                             "Фильтры"
                         ]
                     }, void 0, true, {
                         fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                        lineNumber: 253,
+                        lineNumber: 276,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                lineNumber: 250,
+                lineNumber: 266,
                 columnNumber: 7
+            }, this),
+            (selectedCategories.length > 0 || selectedColors.length > 0 || selectedSizes.length > 0 || selectedSeasons.length > 0) && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "mb-6 flex flex-wrap gap-2",
+                children: [
+                    selectedCategories.map((id)=>{
+                        const cat = filters?.categories.find((c)=>c.category_id === id);
+                        return cat ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "inline-flex items-center gap-2 px-3 py-1 bg-gray-100 rounded-full text-sm",
+                            children: [
+                                cat.category_name,
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>toggleCategory(id),
+                                    className: "hover:text-red-600 cursor-pointer",
+                                    children: "×"
+                                }, void 0, false, {
+                                    fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                    lineNumber: 293,
+                                    columnNumber: 17
+                                }, this)
+                            ]
+                        }, id, true, {
+                            fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                            lineNumber: 291,
+                            columnNumber: 15
+                        }, this) : null;
+                    }),
+                    selectedColors.map((id)=>{
+                        const color = filters?.colors.find((c)=>c.color_id === id);
+                        return color ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "inline-flex items-center gap-2 px-3 py-1 bg-gray-100 rounded-full text-sm",
+                            children: [
+                                color.color_name,
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>toggleColor(id),
+                                    className: "hover:text-red-600 cursor-pointer",
+                                    children: "×"
+                                }, void 0, false, {
+                                    fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                    lineNumber: 302,
+                                    columnNumber: 17
+                                }, this)
+                            ]
+                        }, id, true, {
+                            fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                            lineNumber: 300,
+                            columnNumber: 15
+                        }, this) : null;
+                    }),
+                    selectedSizes.map((id)=>{
+                        const size = filters?.sizes.find((s)=>s.size_id === id);
+                        return size ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                            className: "inline-flex items-center gap-2 px-3 py-1 bg-gray-100 rounded-full text-sm",
+                            children: [
+                                size.size_name,
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                    onClick: ()=>toggleSize(id),
+                                    className: "hover:text-red-600 cursor-pointer",
+                                    children: "×"
+                                }, void 0, false, {
+                                    fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                    lineNumber: 311,
+                                    columnNumber: 17
+                                }, this)
+                            ]
+                        }, id, true, {
+                            fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                            lineNumber: 309,
+                            columnNumber: 15
+                        }, this) : null;
+                    }),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        onClick: clearFilters,
+                        className: "px-3 py-1 text-sm text-red-600 hover:underline cursor-pointer",
+                        children: "Очистить все"
+                    }, void 0, false, {
+                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                        lineNumber: 315,
+                        columnNumber: 11
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                lineNumber: 287,
+                columnNumber: 9
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(FilterDrawer, {
                 open: filterDrawerOpen,
@@ -416,21 +570,19 @@ function ProductsPage() {
                 selectedColors: selectedColors,
                 selectedSizes: selectedSizes,
                 selectedSeasons: selectedSeasons,
-                priceRange: priceRange,
+                priceRange: tempPriceRange,
                 searchQuery: searchQuery,
                 onToggleCategory: toggleCategory,
                 onToggleColor: toggleColor,
                 onToggleSize: toggleSize,
                 onToggleSeason: toggleSeason,
-                onPriceRangeChange: setPriceRange,
+                onPriceRangeChange: setTempPriceRange,
                 onSearchChange: setSearchQuery,
                 onClearFilters: clearFilters,
-                onApplyFilters: applyFilters,
-                onSale: onSale,
-                onToggleOnSale: setOnSale
+                onApplyFilters: applyFilters
             }, void 0, false, {
                 fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                lineNumber: 263,
+                lineNumber: 325,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("main", {
@@ -441,12 +593,12 @@ function ProductsPage() {
                         children: "Загрузка..."
                     }, void 0, false, {
                         fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                        lineNumber: 289,
+                        lineNumber: 349,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                    lineNumber: 288,
+                    lineNumber: 348,
                     columnNumber: 11
                 }, this) : error ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "text-center py-12",
@@ -458,14 +610,14 @@ function ProductsPage() {
                         ]
                     }, void 0, true, {
                         fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                        lineNumber: 293,
+                        lineNumber: 353,
                         columnNumber: 13
                     }, this)
                 }, void 0, false, {
                     fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                    lineNumber: 292,
+                    lineNumber: 352,
                     columnNumber: 11
-                }, this) : products.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                }, this) : colorVariants.length === 0 ? /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                     className: "text-center py-12",
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
@@ -473,51 +625,50 @@ function ProductsPage() {
                             children: "Товары не найдены"
                         }, void 0, false, {
                             fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                            lineNumber: 297,
+                            lineNumber: 357,
                             columnNumber: 13
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                             onClick: clearFilters,
-                            className: "mt-4 text-sm text-blue-600 underline",
+                            className: "mt-4 text-sm text-blue-600 underline cursor-pointer hover:text-blue-800",
                             children: "Сбросить фильтры"
                         }, void 0, false, {
                             fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                            lineNumber: 298,
+                            lineNumber: 358,
                             columnNumber: 13
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                    lineNumber: 296,
+                    lineNumber: 356,
                     columnNumber: 11
                 }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                            className: "grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-4 gap-2",
-                            children: products.map((product)=>{
-                                const primaryImage = product.images?.find((img)=>img.is_primary);
-                                const image = primaryImage || product.images?.[0];
-                                const basePrice = product.base_price ? parseFloat(product.base_price) : 0;
-                                const salePrice = product.sale_price ? parseFloat(product.sale_price) : null;
-                                const displayPrice = salePrice && salePrice < basePrice ? salePrice : basePrice;
-                                const hasDiscount = salePrice && salePrice < basePrice;
+                            className: "grid grid-cols-2 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6",
+                            children: colorVariants.map((variant)=>{
+                                const displayPrice = variant.sale_price || variant.base_price;
+                                const originalPrice = variant.sale_price ? variant.base_price : null;
+                                const imageUrl = variant.primary_image || '/placeholder-product.jpg';
+                                const href = `/catalog/products/${variant.slug}?color=${variant.color_id}`;
                                 return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$components$2f$ProductCard$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                    href: `/catalog/products/${product.slug || product.id}`,
-                                    imageSrc: image?.url || '/placeholder-product.jpg',
-                                    imageAlt: image?.alt_text || product.name,
-                                    title: product.name,
-                                    priceFormatted: `${displayPrice.toFixed(0)} сом`,
-                                    compareAtFormatted: hasDiscount ? `${basePrice.toFixed(0)} сом` : undefined,
+                                    href: href,
+                                    imageSrc: imageUrl,
+                                    imageAlt: `${variant.name} - ${variant.color_name}`,
+                                    title: `${variant.name} - ${variant.color_name}`,
+                                    sizeLabel: variant.category || '',
+                                    priceFormatted: displayPrice,
+                                    compareAtFormatted: originalPrice || undefined,
                                     className: "w-full"
-                                }, product.id, false, {
+                                }, `${variant.id}-${variant.color_id}`, false, {
                                     fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                    lineNumber: 320,
+                                    lineNumber: 375,
                                     columnNumber: 19
                                 }, this);
                             })
                         }, void 0, false, {
                             fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                            lineNumber: 307,
+                            lineNumber: 367,
                             columnNumber: 13
                         }, this),
                         hasMore && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -525,40 +676,42 @@ function ProductsPage() {
                             children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: ()=>setPage((p)=>p + 1),
                                 disabled: loading,
-                                className: "px-6 py-3 bg-black text-white rounded-lg disabled:opacity-50",
+                                className: "px-6 py-3 bg-black text-white rounded-lg disabled:opacity-50 cursor-pointer hover:bg-gray-800 transition-colors",
                                 children: loading ? 'Загрузка...' : 'Показать ещё'
                             }, void 0, false, {
                                 fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                lineNumber: 338,
+                                lineNumber: 392,
                                 columnNumber: 17
                             }, this)
                         }, void 0, false, {
                             fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                            lineNumber: 337,
+                            lineNumber: 391,
                             columnNumber: 15
                         }, this)
                     ]
                 }, void 0, true)
             }, void 0, false, {
                 fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                lineNumber: 286,
+                lineNumber: 346,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-        lineNumber: 248,
+        lineNumber: 264,
         columnNumber: 5
     }, this);
 }
-_s(ProductsPage, "R+MHHx9KVCreUATwhD8v/Q1VfV0=", false, function() {
+_s(ProductsPage, "SbkKjt2XgaptX2+PDCeLGxm5J5o=", false, function() {
     return [
         __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useRouter"],
         __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$navigation$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useSearchParams"]
     ];
 });
 _c = ProductsPage;
-/* ===================== Filter Drawer ===================== */ function FilterDrawer({ open, onClose, filters, selectedCategories, selectedColors, selectedSizes, selectedSeasons, priceRange, searchQuery, onToggleCategory, onToggleColor, onToggleSize, onToggleSeason, onPriceRangeChange, onSearchChange, onClearFilters, onApplyFilters, onSale, onToggleOnSale }) {
+function FilterDrawer({ open, onClose, filters, selectedCategories, selectedColors, selectedSizes, selectedSeasons, priceRange, searchQuery, onToggleCategory, onToggleColor, onToggleSize, onToggleSeason, onPriceRangeChange, onSearchChange, onClearFilters, onApplyFilters }) {
+    const fullMin = filters?.price_range ? Math.floor(filters.price_range.min_price || 0) : 0;
+    const fullMax = filters?.price_range ? Math.ceil(filters.price_range.max_price || 10000) : 10000;
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
         children: [
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -566,7 +719,7 @@ _c = ProductsPage;
                 onClick: onClose
             }, void 0, false, {
                 fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                lineNumber: 400,
+                lineNumber: 450,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("aside", {
@@ -580,29 +733,29 @@ _c = ProductsPage;
                                 children: "Фильтры и Сортировка"
                             }, void 0, false, {
                                 fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                lineNumber: 415,
+                                lineNumber: 463,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: onClose,
-                                className: "p-2 hover:bg-gray-100 rounded-full",
+                                className: "p-2 hover:bg-gray-100 rounded-full cursor-pointer transition-colors",
                                 "aria-label": "Close filters",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$x$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__X$3e$__["X"], {
                                     className: "w-5 h-5"
                                 }, void 0, false, {
                                     fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                    lineNumber: 421,
+                                    lineNumber: 469,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                lineNumber: 416,
+                                lineNumber: 464,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                        lineNumber: 414,
+                        lineNumber: 462,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -614,48 +767,15 @@ _c = ProductsPage;
                                     placeholder: "Поиск...",
                                     value: searchQuery,
                                     onChange: (e)=>onSearchChange(e.target.value),
-                                    className: "w-full px-3 py-2 border rounded-lg"
+                                    className: "w-full px-3 py-2 border rounded-lg cursor-text"
                                 }, void 0, false, {
                                     fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                    lineNumber: 429,
+                                    lineNumber: 475,
                                     columnNumber: 13
                                 }, this)
                             }, void 0, false, {
                                 fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                lineNumber: 428,
-                                columnNumber: 11
-                            }, this),
-                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                    className: "flex items-center gap-2 cursor-pointer",
-                                    children: [
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                            type: "checkbox",
-                                            checked: onSale,
-                                            onChange: (e)=>onToggleOnSale(e.target.checked),
-                                            className: "w-4 h-4"
-                                        }, void 0, false, {
-                                            fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                            lineNumber: 441,
-                                            columnNumber: 15
-                                        }, this),
-                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                            className: "text-sm",
-                                            children: "Только со скидкой"
-                                        }, void 0, false, {
-                                            fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                            lineNumber: 447,
-                                            columnNumber: 15
-                                        }, this)
-                                    ]
-                                }, void 0, true, {
-                                    fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                    lineNumber: 440,
-                                    columnNumber: 13
-                                }, this)
-                            }, void 0, false, {
-                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                lineNumber: 439,
+                                lineNumber: 474,
                                 columnNumber: 11
                             }, this),
                             filters?.categories && filters.categories.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -665,22 +785,22 @@ _c = ProductsPage;
                                         children: "Категории"
                                     }, void 0, false, {
                                         fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                        lineNumber: 454,
+                                        lineNumber: 486,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "space-y-2",
                                         children: filters.categories.map((cat)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                className: "flex items-center gap-2 cursor-pointer",
+                                                className: "flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-1 rounded",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
                                                         type: "checkbox",
                                                         checked: selectedCategories.includes(cat.category_id),
                                                         onChange: ()=>onToggleCategory(cat.category_id),
-                                                        className: "rounded w-4 h-4"
+                                                        className: "rounded w-4 h-4 cursor-pointer"
                                                     }, void 0, false, {
                                                         fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                                        lineNumber: 458,
+                                                        lineNumber: 490,
                                                         columnNumber: 21
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -688,141 +808,24 @@ _c = ProductsPage;
                                                         children: cat.category_name
                                                     }, void 0, false, {
                                                         fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                                        lineNumber: 464,
+                                                        lineNumber: 496,
                                                         columnNumber: 21
                                                     }, this)
                                                 ]
                                             }, cat.category_id, true, {
                                                 fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                                lineNumber: 457,
+                                                lineNumber: 489,
                                                 columnNumber: 19
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                        lineNumber: 455,
+                                        lineNumber: 487,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                lineNumber: 453,
-                                columnNumber: 13
-                            }, this),
-                            filters?.sizes && filters.sizes.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                        className: "font-medium mb-3",
-                                        children: "Размеры"
-                                    }, void 0, false, {
-                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                        lineNumber: 474,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "grid grid-cols-3 gap-2",
-                                        children: filters.sizes.map((size)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                onClick: ()=>onToggleSize(size.size_id),
-                                                className: `px-3 py-2 border rounded text-sm ${selectedSizes.includes(size.size_id) ? 'bg-black text-white border-black' : 'border-gray-300 hover:border-black'}`,
-                                                children: size.size_name
-                                            }, size.size_id, false, {
-                                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                                lineNumber: 477,
-                                                columnNumber: 19
-                                            }, this))
-                                    }, void 0, false, {
-                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                        lineNumber: 475,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                lineNumber: 473,
-                                columnNumber: 13
-                            }, this),
-                            filters?.colors && filters.colors.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                        className: "font-medium mb-3",
-                                        children: "Цвета"
-                                    }, void 0, false, {
-                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                        lineNumber: 496,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "grid grid-cols-6 gap-3",
-                                        children: filters.colors.map((color)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
-                                                onClick: ()=>onToggleColor(color.color_id),
-                                                className: `w-10 h-10 rounded-full border-2 ${selectedColors.includes(color.color_id) ? 'border-black ring-2 ring-black ring-offset-2' : 'border-gray-300'}`,
-                                                style: {
-                                                    backgroundColor: color.color_code
-                                                },
-                                                title: color.color_name
-                                            }, color.color_id, false, {
-                                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                                lineNumber: 499,
-                                                columnNumber: 19
-                                            }, this))
-                                    }, void 0, false, {
-                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                        lineNumber: 497,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                lineNumber: 495,
-                                columnNumber: 13
-                            }, this),
-                            filters?.seasons && filters.seasons.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                children: [
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                        className: "font-medium mb-3",
-                                        children: "Сезон"
-                                    }, void 0, false, {
-                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                        lineNumber: 518,
-                                        columnNumber: 15
-                                    }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "space-y-2",
-                                        children: filters.seasons.map((season)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                                className: "flex items-center gap-2 cursor-pointer",
-                                                children: [
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                        type: "checkbox",
-                                                        checked: selectedSeasons.includes(season.value),
-                                                        onChange: ()=>onToggleSeason(season.value),
-                                                        className: "rounded w-4 h-4"
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                                        lineNumber: 522,
-                                                        columnNumber: 21
-                                                    }, this),
-                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-sm",
-                                                        children: season.label
-                                                    }, void 0, false, {
-                                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                                        lineNumber: 528,
-                                                        columnNumber: 21
-                                                    }, this)
-                                                ]
-                                            }, season.value, true, {
-                                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                                lineNumber: 521,
-                                                columnNumber: 19
-                                            }, this))
-                                    }, void 0, false, {
-                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                        lineNumber: 519,
-                                        columnNumber: 15
-                                    }, this)
-                                ]
-                            }, void 0, true, {
-                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                lineNumber: 517,
+                                lineNumber: 485,
                                 columnNumber: 13
                             }, this),
                             filters?.price_range && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -832,71 +835,286 @@ _c = ProductsPage;
                                         children: "Цена"
                                     }, void 0, false, {
                                         fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                        lineNumber: 538,
+                                        lineNumber: 505,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "space-y-3",
-                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                            className: "flex items-center gap-3",
-                                            children: [
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                    type: "number",
-                                                    value: priceRange[0],
-                                                    onChange: (e)=>onPriceRangeChange([
-                                                            Number(e.target.value),
-                                                            priceRange[1]
-                                                        ]),
-                                                    className: "w-full px-3 py-2 border rounded",
-                                                    placeholder: "От"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                                    lineNumber: 541,
-                                                    columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                    className: "text-gray-500",
-                                                    children: "-"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                                    lineNumber: 550,
-                                                    columnNumber: 19
-                                                }, this),
-                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
-                                                    type: "number",
-                                                    value: priceRange[1],
-                                                    onChange: (e)=>onPriceRangeChange([
+                                        className: "space-y-4",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center justify-between text-sm text-gray-600",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        children: [
                                                             priceRange[0],
-                                                            Number(e.target.value)
-                                                        ]),
-                                                    className: "w-full px-3 py-2 border rounded",
-                                                    placeholder: "До"
-                                                }, void 0, false, {
-                                                    fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                                    lineNumber: 551,
-                                                    columnNumber: 19
-                                                }, this)
-                                            ]
-                                        }, void 0, true, {
-                                            fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                            lineNumber: 540,
-                                            columnNumber: 17
-                                        }, this)
-                                    }, void 0, false, {
+                                                            " сом"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                        lineNumber: 508,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        children: [
+                                                            priceRange[1],
+                                                            " сом"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                        lineNumber: 509,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                lineNumber: 507,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "relative pt-2 pb-6",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                        type: "range",
+                                                        min: fullMin,
+                                                        max: fullMax,
+                                                        value: priceRange[0],
+                                                        onChange: (e)=>{
+                                                            const newMin = Math.min(Number(e.target.value), priceRange[1] - 100);
+                                                            onPriceRangeChange([
+                                                                newMin,
+                                                                priceRange[1]
+                                                            ]);
+                                                        },
+                                                        className: "absolute w-full h-2 bg-transparent appearance-none pointer-events-auto z-10 cursor-pointer range-slider"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                        lineNumber: 513,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                        type: "range",
+                                                        min: fullMin,
+                                                        max: fullMax,
+                                                        value: priceRange[1],
+                                                        onChange: (e)=>{
+                                                            const newMax = Math.max(Number(e.target.value), priceRange[0] + 100);
+                                                            onPriceRangeChange([
+                                                                priceRange[0],
+                                                                newMax
+                                                            ]);
+                                                        },
+                                                        className: "absolute w-full h-2 bg-transparent appearance-none pointer-events-auto z-10 cursor-pointer range-slider"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                        lineNumber: 525,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "relative w-full h-2 bg-gray-200 rounded-full",
+                                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                            className: "absolute h-2 bg-black rounded-full",
+                                                            style: {
+                                                                left: `${(priceRange[0] - fullMin) / (fullMax - fullMin) * 100}%`,
+                                                                right: `${100 - (priceRange[1] - fullMin) / (fullMax - fullMin) * 100}%`
+                                                            }
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                            lineNumber: 538,
+                                                            columnNumber: 21
+                                                        }, this)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                        lineNumber: 537,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                lineNumber: 512,
+                                                columnNumber: 17
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center gap-3",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                        type: "number",
+                                                        value: priceRange[0],
+                                                        onChange: (e)=>onPriceRangeChange([
+                                                                Number(e.target.value),
+                                                                priceRange[1]
+                                                            ]),
+                                                        className: "w-full px-3 py-2 border rounded cursor-text",
+                                                        placeholder: "От",
+                                                        min: fullMin,
+                                                        max: priceRange[1]
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                        lineNumber: 549,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "text-gray-500",
+                                                        children: "-"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                        lineNumber: 558,
+                                                        columnNumber: 19
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                        type: "number",
+                                                        value: priceRange[1],
+                                                        onChange: (e)=>onPriceRangeChange([
+                                                                priceRange[0],
+                                                                Number(e.target.value)
+                                                            ]),
+                                                        className: "w-full px-3 py-2 border rounded cursor-text",
+                                                        placeholder: "До",
+                                                        min: priceRange[0],
+                                                        max: fullMax
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                        lineNumber: 559,
+                                                        columnNumber: 19
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                lineNumber: 548,
+                                                columnNumber: 17
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
                                         fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                        lineNumber: 539,
+                                        lineNumber: 506,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                lineNumber: 537,
+                                lineNumber: 504,
+                                columnNumber: 13
+                            }, this),
+                            filters?.sizes && filters.sizes.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                        className: "font-medium mb-3",
+                                        children: "Размеры"
+                                    }, void 0, false, {
+                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                        lineNumber: 575,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "grid grid-cols-3 gap-2",
+                                        children: filters.sizes.map((size)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                onClick: ()=>onToggleSize(size.size_id),
+                                                className: `px-3 py-2 border rounded text-sm cursor-pointer transition-all ${selectedSizes.includes(size.size_id) ? 'bg-black text-white border-black' : 'border-gray-300 hover:border-black hover:bg-gray-50'}`,
+                                                children: size.size_name
+                                            }, size.size_id, false, {
+                                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                lineNumber: 578,
+                                                columnNumber: 19
+                                            }, this))
+                                    }, void 0, false, {
+                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                        lineNumber: 576,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                lineNumber: 574,
+                                columnNumber: 13
+                            }, this),
+                            filters?.colors && filters.colors.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                        className: "font-medium mb-3",
+                                        children: "Цвета"
+                                    }, void 0, false, {
+                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                        lineNumber: 596,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "grid grid-cols-6 gap-3",
+                                        children: filters.colors.map((color)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                                                onClick: ()=>onToggleColor(color.color_id),
+                                                className: `w-10 h-10 rounded-full border-2 cursor-pointer transition-all hover:scale-110 ${selectedColors.includes(color.color_id) ? 'border-black ring-2 ring-black ring-offset-2' : 'border-gray-300 hover:border-gray-600'}`,
+                                                style: {
+                                                    backgroundColor: color.color_code
+                                                },
+                                                title: color.color_name
+                                            }, color.color_id, false, {
+                                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                lineNumber: 599,
+                                                columnNumber: 19
+                                            }, this))
+                                    }, void 0, false, {
+                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                        lineNumber: 597,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                lineNumber: 595,
+                                columnNumber: 13
+                            }, this),
+                            filters?.seasons && filters.seasons.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
+                                        className: "font-medium mb-3",
+                                        children: "Сезон"
+                                    }, void 0, false, {
+                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                        lineNumber: 617,
+                                        columnNumber: 15
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "space-y-2",
+                                        children: filters.seasons.map((season)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
+                                                className: "flex items-center gap-2 cursor-pointer hover:bg-gray-50 p-1 rounded",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                                        type: "checkbox",
+                                                        checked: selectedSeasons.includes(season.value),
+                                                        onChange: ()=>onToggleSeason(season.value),
+                                                        className: "rounded w-4 h-4 cursor-pointer"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                        lineNumber: 621,
+                                                        columnNumber: 21
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                        className: "text-sm",
+                                                        children: season.label
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                        lineNumber: 627,
+                                                        columnNumber: 21
+                                                    }, this)
+                                                ]
+                                            }, season.value, true, {
+                                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                                lineNumber: 620,
+                                                columnNumber: 19
+                                            }, this))
+                                    }, void 0, false, {
+                                        fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                        lineNumber: 618,
+                                        columnNumber: 15
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/front_nely/app/catalog/products/page.tsx",
+                                lineNumber: 616,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                        lineNumber: 426,
+                        lineNumber: 473,
                         columnNumber: 9
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -904,32 +1122,32 @@ _c = ProductsPage;
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: onClearFilters,
-                                className: "w-full py-3 border border-gray-300 rounded-lg hover:bg-gray-50",
+                                className: "w-full py-3 border border-gray-300 rounded-lg hover:bg-gray-50 cursor-pointer transition-colors",
                                 children: "Очистить"
                             }, void 0, false, {
                                 fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                lineNumber: 568,
+                                lineNumber: 636,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                 onClick: onApplyFilters,
-                                className: "w-full py-3 bg-black text-white rounded-lg hover:bg-gray-800",
+                                className: "w-full py-3 bg-black text-white rounded-lg hover:bg-gray-800 cursor-pointer transition-colors",
                                 children: "Показать"
                             }, void 0, false, {
                                 fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                                lineNumber: 574,
+                                lineNumber: 642,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                        lineNumber: 567,
+                        lineNumber: 635,
                         columnNumber: 9
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/front_nely/app/catalog/products/page.tsx",
-                lineNumber: 408,
+                lineNumber: 457,
                 columnNumber: 7
             }, this)
         ]

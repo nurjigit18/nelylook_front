@@ -102,7 +102,7 @@ export default function HomePage() {
           },
         ]}
       />
-
+      
       <EditorialTiles />
       <CollectionBanner />
       <JustArrivedCarousel products={products} />

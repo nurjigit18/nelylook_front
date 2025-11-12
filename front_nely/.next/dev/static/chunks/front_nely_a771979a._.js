@@ -172,7 +172,7 @@ __turbopack_context__.s([
     ()=>ProductDetailPage
 ]);
 var __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/front_nely/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
-var __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/front_nely/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/front_nely/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)"); // ✅ Add useEffect here
 var __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$image$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/front_nely/node_modules/next/image.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/front_nely/node_modules/next/dist/client/app-dir/link.js [app-client] (ecmascript)");
 var __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$lucide$2d$react$2f$dist$2f$esm$2f$icons$2f$heart$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__$3c$export__default__as__Heart$3e$__ = __turbopack_context__.i("[project]/front_nely/node_modules/lucide-react/dist/esm/icons/heart.js [app-client] (ecmascript) <export default as Heart>");
@@ -190,9 +190,13 @@ const cleanImageUrl = (url)=>{
     if (!url) return '/placeholder-product.jpg';
     return url.replace(/\?$/, '').trim();
 };
-function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+996700123456' }) {
+function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+996700123456', initialColorId = null // ✅ Add this parameter
+ }) {
     _s();
-    const [selectedColor, setSelectedColor] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(product.available_colors[0] || null);
+    // ✅ Find the initial color based on URL parameter
+    const initialColor = initialColorId ? product.available_colors.find((c)=>c.id === initialColorId) : product.available_colors[0];
+    const [selectedColor, setSelectedColor] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(initialColor || null // ✅ Use initialColor instead of direct array access
+    );
     const [selectedSize, setSelectedSize] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(product.available_sizes[0] || null);
     const [quantity, setQuantity] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(1);
     const [mainImage, setMainImage] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(product.images.find({
@@ -200,6 +204,41 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
     }["ProductDetailPage.useState"]) || product.images[0] || null);
     const [isWishlisted, setIsWishlisted] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(false);
     const [expandedSection, setExpandedSection] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('description');
+    // ✅ Add useEffect to update main image when color changes
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ProductDetailPage.useEffect": ()=>{
+            if (selectedColor) {
+                const colorImage = product.images.find({
+                    "ProductDetailPage.useEffect": (img)=>img.color_id === selectedColor.id && img.is_primary
+                }["ProductDetailPage.useEffect"]) || product.images.find({
+                    "ProductDetailPage.useEffect": (img)=>img.color_id === selectedColor.id
+                }["ProductDetailPage.useEffect"]);
+                if (colorImage) {
+                    setMainImage(colorImage);
+                }
+            }
+        }
+    }["ProductDetailPage.useEffect"], [
+        selectedColor,
+        product.images
+    ]);
+    // ✅ Update images when color is selected from URL on mount
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "ProductDetailPage.useEffect": ()=>{
+            if (initialColorId && selectedColor) {
+                const colorImage = product.images.find({
+                    "ProductDetailPage.useEffect": (img)=>img.color_id === selectedColor.id && img.is_primary
+                }["ProductDetailPage.useEffect"]) || product.images.find({
+                    "ProductDetailPage.useEffect": (img)=>img.color_id === selectedColor.id
+                }["ProductDetailPage.useEffect"]);
+                if (colorImage) {
+                    setMainImage(colorImage);
+                }
+            }
+        }
+    }["ProductDetailPage.useEffect"], [
+        initialColorId
+    ]); // Only run on mount
     // Filter images by selected color
     const colorImages = product.images.filter((img)=>selectedColor && img.color_id === selectedColor.id);
     const displayImages = colorImages.length > 0 ? colorImages : product.images;
@@ -234,14 +273,14 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                             children: "Home"
                         }, void 0, false, {
                             fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                            lineNumber: 132,
+                            lineNumber: 169,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                             children: "/"
                         }, void 0, false, {
                             fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                            lineNumber: 135,
+                            lineNumber: 172,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
@@ -250,14 +289,14 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                             children: "Shop"
                         }, void 0, false, {
                             fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                            lineNumber: 136,
+                            lineNumber: 173,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                             children: "/"
                         }, void 0, false, {
                             fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                            lineNumber: 139,
+                            lineNumber: 176,
                             columnNumber: 11
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -265,18 +304,18 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                             children: product.name
                         }, void 0, false, {
                             fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                            lineNumber: 140,
+                            lineNumber: 177,
                             columnNumber: 11
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                    lineNumber: 131,
+                    lineNumber: 168,
                     columnNumber: 9
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                lineNumber: 130,
+                lineNumber: 167,
                 columnNumber: 7
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -300,14 +339,14 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                 sizes: "(max-width: 768px) 100vw, 50vw"
                                             }, void 0, false, {
                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                lineNumber: 152,
+                                                lineNumber: 189,
                                                 columnNumber: 17
                                             }, this) : /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                 className: "flex h-full items-center justify-center text-neutral-400",
                                                 children: "No image available"
                                             }, void 0, false, {
                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                lineNumber: 161,
+                                                lineNumber: 198,
                                                 columnNumber: 17
                                             }, this),
                                             hasDiscount && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -319,13 +358,13 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                lineNumber: 168,
+                                                lineNumber: 205,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                        lineNumber: 150,
+                                        lineNumber: 187,
                                         columnNumber: 13
                                     }, this),
                                     displayImages.length > 1 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -341,23 +380,23 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                     sizes: "(max-width: 768px) 33vw, 16vw"
                                                 }, void 0, false, {
                                                     fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                    lineNumber: 185,
+                                                    lineNumber: 222,
                                                     columnNumber: 21
                                                 }, this)
                                             }, img.id, false, {
                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                lineNumber: 178,
+                                                lineNumber: 215,
                                                 columnNumber: 19
                                             }, this))
                                     }, void 0, false, {
                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                        lineNumber: 176,
+                                        lineNumber: 213,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                lineNumber: 148,
+                                lineNumber: 185,
                                 columnNumber: 11
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -368,10 +407,10 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                         children: product.name
                                     }, void 0, false, {
                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                        lineNumber: 201,
+                                        lineNumber: 238,
                                         columnNumber: 13
                                     }, this),
-                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                    product.rating && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "mt-2 flex items-center gap-2",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                             className: "flex items-center",
@@ -381,27 +420,27 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                     children: product.rating
                                                 }, void 0, false, {
                                                     fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                    lineNumber: 204,
-                                                    columnNumber: 17
+                                                    lineNumber: 242,
+                                                    columnNumber: 19
                                                 }, this),
                                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                     className: "ml-1 text-yellow-500",
                                                     children: "★"
                                                 }, void 0, false, {
                                                     fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                    lineNumber: 205,
-                                                    columnNumber: 17
+                                                    lineNumber: 243,
+                                                    columnNumber: 19
                                                 }, this)
                                             ]
                                         }, void 0, true, {
                                             fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                            lineNumber: 203,
-                                            columnNumber: 15
+                                            lineNumber: 241,
+                                            columnNumber: 17
                                         }, this)
                                     }, void 0, false, {
                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                        lineNumber: 202,
-                                        columnNumber: 13
+                                        lineNumber: 240,
+                                        columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                         className: "mt-4 flex items-center gap-3",
@@ -414,7 +453,7 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                lineNumber: 211,
+                                                lineNumber: 250,
                                                 columnNumber: 15
                                             }, this),
                                             hasDiscount && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["Fragment"], {
@@ -427,7 +466,7 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                        lineNumber: 214,
+                                                        lineNumber: 253,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -439,7 +478,7 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                        lineNumber: 217,
+                                                        lineNumber: 256,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
@@ -447,7 +486,7 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                        lineNumber: 210,
+                                        lineNumber: 249,
                                         columnNumber: 13
                                     }, this),
                                     product.available_sizes.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -461,7 +500,7 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                         children: "Available Size"
                                                     }, void 0, false, {
                                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                        lineNumber: 228,
+                                                        lineNumber: 267,
                                                         columnNumber: 19
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -469,13 +508,13 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                         children: product.available_sizes.map((s)=>s.name).join(' — ')
                                                     }, void 0, false, {
                                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                        lineNumber: 229,
+                                                        lineNumber: 268,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                lineNumber: 227,
+                                                lineNumber: 266,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -486,18 +525,18 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                         children: size.name
                                                     }, size.id, false, {
                                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                        lineNumber: 235,
+                                                        lineNumber: 274,
                                                         columnNumber: 21
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                lineNumber: 233,
+                                                lineNumber: 272,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                        lineNumber: 226,
+                                        lineNumber: 265,
                                         columnNumber: 15
                                     }, this),
                                     product.available_colors.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -508,7 +547,7 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                 children: "Available Color"
                                             }, void 0, false, {
                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                lineNumber: 254,
+                                                lineNumber: 293,
                                                 columnNumber: 17
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -525,7 +564,7 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                                 }
                                                             }, void 0, false, {
                                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                                lineNumber: 267,
+                                                                lineNumber: 306,
                                                                 columnNumber: 23
                                                             }, this),
                                                             selectedColor?.id === color.id && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -540,34 +579,34 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                                         clipRule: "evenodd"
                                                                     }, void 0, false, {
                                                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                                        lineNumber: 274,
+                                                                        lineNumber: 313,
                                                                         columnNumber: 29
                                                                     }, this)
                                                                 }, void 0, false, {
                                                                     fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                                    lineNumber: 273,
+                                                                    lineNumber: 312,
                                                                     columnNumber: 27
                                                                 }, this)
                                                             }, void 0, false, {
                                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                                lineNumber: 272,
+                                                                lineNumber: 311,
                                                                 columnNumber: 25
                                                             }, this)
                                                         ]
                                                     }, color.id, true, {
                                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                        lineNumber: 257,
+                                                        lineNumber: 296,
                                                         columnNumber: 21
                                                     }, this))
                                             }, void 0, false, {
                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                lineNumber: 255,
+                                                lineNumber: 294,
                                                 columnNumber: 17
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                        lineNumber: 253,
+                                        lineNumber: 292,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -581,7 +620,7 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                         children: "Количество:"
                                                     }, void 0, false, {
                                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                        lineNumber: 288,
+                                                        lineNumber: 327,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -594,7 +633,7 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                                 children: "−"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                                lineNumber: 290,
+                                                                lineNumber: 329,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -602,7 +641,7 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                                 children: quantity
                                                             }, void 0, false, {
                                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                                lineNumber: 297,
+                                                                lineNumber: 336,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -612,19 +651,19 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                                 children: "+"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                                lineNumber: 300,
+                                                                lineNumber: 339,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                        lineNumber: 289,
+                                                        lineNumber: 328,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                lineNumber: 287,
+                                                lineNumber: 326,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -634,7 +673,7 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                 children: "Купить сейчас"
                                             }, void 0, false, {
                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                lineNumber: 311,
+                                                lineNumber: 350,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -646,7 +685,7 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                         children: "Добавить в корзину"
                                                     }, void 0, false, {
                                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                        lineNumber: 321,
+                                                        lineNumber: 360,
                                                         columnNumber: 17
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
@@ -657,24 +696,24 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                             className: `h-6 w-6 ${isWishlisted ? 'fill-red-500 text-red-500' : 'text-neutral-600'}`
                                                         }, void 0, false, {
                                                             fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                            lineNumber: 332,
+                                                            lineNumber: 371,
                                                             columnNumber: 19
                                                         }, this)
                                                     }, void 0, false, {
                                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                        lineNumber: 327,
+                                                        lineNumber: 366,
                                                         columnNumber: 17
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                lineNumber: 320,
+                                                lineNumber: 359,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                        lineNumber: 285,
+                                        lineNumber: 324,
                                         columnNumber: 13
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -692,7 +731,7 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                                 children: "Описание и характеристики"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                                lineNumber: 347,
+                                                                lineNumber: 386,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -700,13 +739,13 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                                 children: expandedSection === 'description' ? '−' : '+'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                                lineNumber: 348,
+                                                                lineNumber: 387,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                        lineNumber: 343,
+                                                        lineNumber: 382,
                                                         columnNumber: 17
                                                     }, this),
                                                     expandedSection === 'description' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -714,13 +753,13 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                         children: product.description || product.short_description || 'Нет описания'
                                                     }, void 0, false, {
                                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                        lineNumber: 351,
+                                                        lineNumber: 390,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                lineNumber: 342,
+                                                lineNumber: 381,
                                                 columnNumber: 15
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -735,7 +774,7 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                                 children: "Материалы и уход"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                                lineNumber: 363,
+                                                                lineNumber: 402,
                                                                 columnNumber: 19
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
@@ -743,13 +782,13 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                                 children: expandedSection === 'materials' ? '−' : '+'
                                                             }, void 0, false, {
                                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                                lineNumber: 364,
+                                                                lineNumber: 403,
                                                                 columnNumber: 19
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                        lineNumber: 359,
+                                                        lineNumber: 398,
                                                         columnNumber: 17
                                                     }, this),
                                                     expandedSection === 'materials' && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -759,44 +798,44 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                                                 children: "• 100% хлопок, ответственный источник"
                                                             }, void 0, false, {
                                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                                lineNumber: 368,
+                                                                lineNumber: 407,
                                                                 columnNumber: 21
                                                             }, this),
                                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
                                                                 children: "• Машинная стирка холодной водой. Не отбеливать. Сушить при низкой температуре."
                                                             }, void 0, false, {
                                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                                lineNumber: 369,
+                                                                lineNumber: 408,
                                                                 columnNumber: 21
                                                             }, this)
                                                         ]
                                                     }, void 0, true, {
                                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                        lineNumber: 367,
+                                                        lineNumber: 406,
                                                         columnNumber: 19
                                                     }, this)
                                                 ]
                                             }, void 0, true, {
                                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                                lineNumber: 358,
+                                                lineNumber: 397,
                                                 columnNumber: 15
                                             }, this)
                                         ]
                                     }, void 0, true, {
                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                        lineNumber: 340,
+                                        lineNumber: 379,
                                         columnNumber: 13
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                lineNumber: 199,
+                                lineNumber: 236,
                                 columnNumber: 11
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                        lineNumber: 146,
+                        lineNumber: 183,
                         columnNumber: 9
                     }, this),
                     relatedProducts.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -810,22 +849,22 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                         children: "Похожие товары"
                                     }, void 0, false, {
                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                        lineNumber: 381,
+                                        lineNumber: 420,
                                         columnNumber: 15
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
-                                        href: "/catalog",
+                                        href: "/catalog/products",
                                         className: "text-sm underline hover:text-neutral-600",
                                         children: "Смотреть все"
                                     }, void 0, false, {
                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                        lineNumber: 382,
+                                        lineNumber: 421,
                                         columnNumber: 15
                                     }, this)
                                 ]
                             }, void 0, true, {
                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                lineNumber: 380,
+                                lineNumber: 419,
                                 columnNumber: 13
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$front_nely$2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -834,34 +873,34 @@ function ProductDetailPage({ product, relatedProducts = [], whatsappNumber = '+9
                                         ...product
                                     }, product.id, false, {
                                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                        lineNumber: 389,
+                                        lineNumber: 428,
                                         columnNumber: 17
                                     }, this))
                             }, void 0, false, {
                                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                                lineNumber: 387,
+                                lineNumber: 426,
                                 columnNumber: 13
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                        lineNumber: 379,
+                        lineNumber: 418,
                         columnNumber: 11
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-                lineNumber: 145,
+                lineNumber: 182,
                 columnNumber: 7
             }, this)
         ]
     }, void 0, true, {
         fileName: "[project]/front_nely/components/ProductDetailPage.tsx",
-        lineNumber: 128,
+        lineNumber: 165,
         columnNumber: 5
     }, this);
 }
-_s(ProductDetailPage, "AWnItooBBAXuyVIl2HxWaRwhhUQ=");
+_s(ProductDetailPage, "TLW+L4hNgVMpXWCKhPcscYU7CPc=");
 _c = ProductDetailPage;
 var _c;
 __turbopack_context__.k.register(_c, "ProductDetailPage");
